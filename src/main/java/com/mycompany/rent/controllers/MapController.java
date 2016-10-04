@@ -8,6 +8,7 @@ package com.mycompany.rent.controllers;
 import com.mycompany.rent.dao.ForRentDao;
 import com.mycompany.rent.dto.ForRent;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,6 +54,8 @@ public class MapController {
         responseDetailsJson.put("data", (Object) array);//Here you can see the data in json format
 
         File file = new File("/home/brennan/_repos/rent/src/main/webapp/json/data.json");
+        
+        String path = file.getPath();
 
         try {
 
@@ -67,6 +70,8 @@ public class MapController {
         } catch (IOException e) {
 
         }
+        
+        FileReader fr = new FileReader(file);
 
         return file;
     }

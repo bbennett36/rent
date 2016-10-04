@@ -307,12 +307,38 @@ function initMap() {
         center: {lat: -34.397, lng: 150.644}
     });
 
-    fetch(contextRoot + "/map/data")
-            .then(function (response) {
-                console.log(response.json);
-                return response()
-            })
-            .then(plotMarkers);
+//      var json = (contextRoot + '/webapp/json/data.json'); //(with path)
+//      var json = (contextRoot + '/json/data.json'); //(with path)
+//
+//
+//    fetch(json, {
+//        method: 'get'
+//    })
+//            .then(function (response) {
+//                console.log(response);
+//                console.log(contextRoot);
+//                return response.json()
+//            }).catch(function (err) {
+//        console.log(err);
+//    })
+//            .then(plotMarkers);
+
+    $.ajax({
+        type: "GET",
+        url: contextRoot + '/map/data',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-type", "application/json");
+        },
+        success: function (response, status) {
+            console.log(response);
+
+        },
+        error: function (data, status) {
+//                    alert("geo error");
+            console.log(data.errors);
+        }});
+
 }
 
 var markers;
