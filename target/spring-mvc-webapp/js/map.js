@@ -307,6 +307,8 @@ function initMap() {
         center: {lat: -34.397, lng: 150.644}
     });
 
+google.maps.event.addDomListener(window, "load", initialize);
+
 //      var json = (contextRoot + '/webapp/json/data.json'); //(with path)
 //      var json = (contextRoot + '/json/data.json'); //(with path)
 //

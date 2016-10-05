@@ -11,6 +11,9 @@
 
         <!-- SWC Icon -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
+        
+        
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rent.css">
 
         <script>
             var contextRoot = "${pageContext.request.contextPath}";
@@ -34,7 +37,7 @@
 
             <!--<div id="map"></div>-->
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" id="right">
 
             <c:forEach items="${rentals}" var="r">
                 <div>
