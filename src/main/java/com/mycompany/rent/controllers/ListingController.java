@@ -7,6 +7,7 @@ package com.mycompany.rent.controllers;
 
 import com.mycompany.rent.dao.ForRentDao;
 import com.mycompany.rent.dto.ForRent;
+import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
@@ -39,13 +40,7 @@ public class ListingController {
         return "listing";
     }
 
-    @RequestMapping(value = "/rent", method = RequestMethod.GET)
-    public String rentPage(Map model) {
-
-        boolean rent = true;
-        model.put("rent", rent);
-        return "rent";
-    }
+  
 
     @RequestMapping(value = "/sale", method = RequestMethod.GET)
     public String salePage(Map model) {
@@ -55,12 +50,6 @@ public class ListingController {
         return "sale";
     }
 
-//    @RequestMapping(value = "/create", method = RequestMethod.POST)
-//    public String createForRent(@ModelAttribute ForRent forRent, Map model) {
-//
-//        forRentDao.create(forRent);
-//        return "redirect:/";
-//    }
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public ForRent createForRent(@RequestBody ForRent forRent, Map model) {

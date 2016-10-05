@@ -40,7 +40,7 @@
                     <div id="navbar9" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav nav-pills navbar-left">
                             <li <c:if test="${home}"> class="active" </c:if>><a href="${pageContext.request.contextPath}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                            <li <c:if test="${rent}"> class="active" </c:if>><a href="${pageContext.request.contextPath}/list/rent">For Rent</a></li>
+                            <li <c:if test="${rent}"> class="active" </c:if>><a href="${pageContext.request.contextPath}/rent/rentals">For Rent</a></li>
                             <li <c:if test="${sale}"> class="active" </c:if>><a href="${pageContext.request.contextPath}/list/sale">For Sale</a></li>
                             <li <c:if test="${list}"> class="active" </c:if>><a href="${pageContext.request.contextPath}/list/new">List a Property</a></li>
                         </ul>

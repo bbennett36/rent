@@ -323,21 +323,32 @@ function initMap() {
 //    })
 //            .then(plotMarkers);
 
-    $.ajax({
-        type: "GET",
-        url: contextRoot + '/map/data',
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.setRequestHeader("Content-type", "application/json");
-        },
-        success: function (response, status) {
-            console.log(response);
+//    $.ajax({
+//        type: "GET",
+//        dataType: 'json',
+//        url: contextRoot + '/json/data.json',
+//        beforeSend: function (xhr) {
+//            xhr.setRequestHeader("Accept", "application/json");
+//            xhr.setRequestHeader("Content-type", "application/json");
+//        },
+//        success: function (response, status, data) {
+//            console.log(response);
+//            console.log(data);
+//
+//        },
+//        error: function (data, status) {
+////                    alert("geo error");
+//            console.log(data.errors);
+//            console.log(data);
+//        }});
 
-        },
-        error: function (data, status) {
-//                    alert("geo error");
-            console.log(data.errors);
-        }});
+    $.getJSON("file:///json/data.json", function (data) {
+        var items = [];
+        $.each(data, function (key, val) {
+            items.push("<li id='" + key + "'>" + val + "</li>");
+        });
+       
+    });
 
 }
 

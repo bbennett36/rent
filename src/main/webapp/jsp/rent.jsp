@@ -11,30 +11,49 @@
 
         <!-- SWC Icon -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
-        
+
         <script>
             var contextRoot = "${pageContext.request.contextPath}";
         </script>
 
     </head>
     <body>
-        <!--<div class="container">-->
         <%@ include file="navbar.jsp" %>
+
+        <!--<div class="container">-->
 
         <div>
             <input id="address" type="textbox" value="">
             <button id='submit' type="submit">Search</button>
         </div>
-        <br />
 
-        <div id="map"></div>
+        <div class="col-md-6" id="map">
 
-      
+
+
+
+            <!--<div id="map"></div>-->
+        </div>
+        <div class="col-md-6">
+
+            <c:forEach items="${rentals}" var="r">
+                <div>
+                    <a href="${pageContext.request.contextPath}/rent/${r.id}">${r.streetAddress} ${r.streetName}</a>
+                    <br />
+                    <p>${r.city} ${r.state} ${r.zip}</p> 
+                </div>
+                <hr>
+            </c:forEach>
+
+
+        </div>
+
+
 
 
 
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
+        <!--<script src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>-->
         <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
     </body>
