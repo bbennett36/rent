@@ -40,6 +40,7 @@ $(document).ready(function () {
                     growGriendly: $('#growFriendly').val(),
                     lat: lati,
                     lon: lng
+//                    photo: $('#file').val()
                 });
 
                 $.ajax({
@@ -53,7 +54,8 @@ $(document).ready(function () {
 //                codeAddress();
                     },
                     success: function (data, status) {
-                window.location = contextRoot;
+                        console.log(data);
+                window.location = contextRoot + "/list/" + data.id;
 
                     },
                     error: function (data, status) {

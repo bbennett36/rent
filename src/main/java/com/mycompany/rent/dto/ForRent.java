@@ -5,12 +5,14 @@
  */
 package com.mycompany.rent.dto;
 
+import java.io.File;
+
 /**
  *
  * @author brennan
  */
 public class ForRent {
-    
+
     private int id;
     private String streetAddress;
     private String streetName;
@@ -22,6 +24,32 @@ public class ForRent {
     private String lng;
     private boolean mjFriendly;
     private boolean growFriendly;
+    private File photo;
+    private String fileName;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public File getPhoto() {
+        return photo;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public void setPhoto(File photo) {
+        this.photo = photo;
+    }
 
     /**
      * @return the id
@@ -45,7 +73,7 @@ public class ForRent {
     public void setLon(String lon) {
         this.lng = lon;
     }
-    
+
     /**
      * @param id the id to set
      */
@@ -161,7 +189,5 @@ public class ForRent {
     public void setGrowFriendly(boolean growFriendly) {
         this.growFriendly = growFriendly;
     }
-    
-    
-    
+
 }

@@ -28,6 +28,8 @@
                 <br />
                 <input type="checkbox" id='growFriendly' name="growFriendly" value="true" />Grow Friendly
                 <br />
+                <!--<input type="file" name="file" id="file" class="custom-file-input" size="50" />-->
+
                 <button type="submit" id="submitListing" class="btn-primary btn-lg center-block">Submit</button>
             </form>
         </div>
