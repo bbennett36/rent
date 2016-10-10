@@ -86,18 +86,18 @@ public class ListingController {
     }
     
     @RequestMapping(value = "/photo/{id}", method = RequestMethod.POST)
-    public String addPhotos(@RequestParam("file") MultipartFile file, int id, Map model, HttpServletRequest request) throws IOException {
+    public String addPhotos(@RequestParam("file") MultipartFile file, @PathVariable int id, Map model) throws IOException {
         
         if (!file.isEmpty()) {
 
             ForRent rent = forRentDao.get(id);
 
-            String realPathtoUploads = "/home/brennan/_repos/rent/src/main/webapp/uploads/";
+            String realPathtoUploads = "/home/brennan/_repos/rent/src/main/webapp/uploads/" + id;
 
             String orgName = file.getOriginalFilename();
             rent.setFileName(orgName);
-            forRentDao.update(rent);
-            String filePath = (realPathtoUploads + rent.getId() + orgName);
+            forRentDao.addPhotos(id, orgName);
+            String filePath = (realPathtoUploads + rent.getId() +  "_"  + orgName);
             File dest = new File(filePath);
             file.transferTo(dest);
             

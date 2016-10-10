@@ -41,9 +41,9 @@
 
             <c:forEach items="${rentals}" var="r">
                 <div>
-                    <a href="${pageContext.request.contextPath}/rent/${r.id}">${r.streetAddress} ${r.streetName}</a>
-                    <br />
-                    <p>${r.city} ${r.state} ${r.zip}</p> 
+                    <img src="${pageContext.request.contextPath}/uploads/138_arlington.jpg" height="125px" width="125px" />
+                    <a href="${pageContext.request.contextPath}/rent/${r.id}">${r.streetAddress} ${r.streetName}
+                    ${r.city} ${r.state} ${r.zip}</a> 
                 </div>
                 <hr>
             </c:forEach>

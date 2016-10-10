@@ -14,7 +14,7 @@
     <body>
         <%@ include file="navbar.jsp" %>
 
-        <form method="POST" action="${pageContext.request.contextPath}/list/photo/"${rental.id} enctype="multipart/form-data">
+        <form method="POST" action="${pageContext.request.contextPath}/list/photo/${rental.id}" enctype="multipart/form-data">
             <label class="custom-file">
                 <input type="file" name="file" class="custom-file-input" size="50" />
                 <span class="custom-file-control"></span>

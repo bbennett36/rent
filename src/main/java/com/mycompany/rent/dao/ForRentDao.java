@@ -23,5 +23,7 @@ public interface ForRentDao {
     public void delete(ForRent forRent);
 
     public List<ForRent> allRentals();
+    
+    public void addPhotos (int id, String fileName);
 
 }
