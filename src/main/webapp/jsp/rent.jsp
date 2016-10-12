@@ -11,8 +11,8 @@
 
         <!-- SWC Icon -->
         <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/icon.png">
-        
-        
+
+
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/rent.css">
 
         <script>
@@ -25,40 +25,49 @@
 
         <!--<div class="container">-->
 
-        <div>
-            <input id="address" type="textbox" value="">
-            <button id='submit' type="submit">Search</button>
-        </div>
 
-        <div class="col-md-6" id="map">
+
+        <!--<div class="col-md-6" id="map">-->
 
 
 
 
-            <!--<div id="map"></div>-->
-        </div>
-        <div class="col-md-6" id="right">
+        <!--<div id="map"></div>-->
+        <!--</div>-->
 
+        <div class="col-md-3"></div>
+        <!--<div class="col-md-6" id="right">-->
+        <div class="col-md-6">
+            <div class="text-center">
+<!--                <input id="address" type="textbox" value="">
+                <button id='submit' type="submit">Search</button>-->
+                
+                 <input id="address" type="textbox" value="">
+                <button id='searchRadius' type="submit">Search</button>
+            </div>
             <c:forEach items="${rentals}" var="r">
-                <div>
-                    <img src="${pageContext.request.contextPath}/uploads/138_arlington.jpg" height="125px" width="125px" />
-                    <a href="${pageContext.request.contextPath}/rent/${r.id}">${r.streetAddress} ${r.streetName}
-                    ${r.city} ${r.state} ${r.zip}</a> 
-                </div>
+                <a href="${pageContext.request.contextPath}/rent/${r.id}">
+                    <div>
+                        <img src="${pageContext.request.contextPath}/uploads/138_arlington.jpg" height="125px" width="125px" />
+                        ${r.streetAddress} ${r.streetName}
+                        ${r.city} ${r.state} ${r.zip}
+                    </div>
+                </a>
                 <hr>
             </c:forEach>
-
-
         </div>
+        <div class="col-md-3"></div>
+
+    </div>
 
 
 
 
 
-        <!-- Placed at the end of the document so the pages load faster -->
-        <!--<script src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>-->
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>-->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-    </body>
+</body>
 </html>
 

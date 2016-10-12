@@ -15,6 +15,7 @@
 
         <link href="${pageContext.request.contextPath}/css/site.css" rel="stylesheet" >
         <script src="${pageContext.request.contextPath}/js/map.js"></script>
+        <script src="${pageContext.request.contextPath}/js/radius.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEqFPxjP_ubeG9tLbj3P0aHUoqNi35rts&callback=initMap"
         async defer></script>
     </head>
@@ -43,9 +44,9 @@
                             <li <c:if test="${rent}"> class="active" </c:if>><a href="${pageContext.request.contextPath}/rent/rentals">For Rent</a></li>
                             <li <c:if test="${sale}"> class="active" </c:if>><a href="${pageContext.request.contextPath}/list/sale">For Sale</a></li>
                             <li <c:if test="${list}"> class="active" </c:if>><a href="${pageContext.request.contextPath}/list/new">List a Property</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li> 
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li> 
                                 <%--<sec:authorize access="!isAuthenticated()">--%>
                                 <a href="${pageContext.request.contextPath}/login/signup"><strong>Sign up</strong></a>
                                 <%--</sec:authorize>--%>

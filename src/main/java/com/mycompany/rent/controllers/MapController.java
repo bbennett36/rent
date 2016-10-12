@@ -20,6 +20,7 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -35,6 +36,16 @@ public class MapController {
     @Inject
     public MapController(ForRentDao forRentDao) {
         this.forRentDao = forRentDao;
+    }
+    
+    @RequestMapping(value = "/radius", method = RequestMethod.GET)
+    public String radiusSearch(@RequestParam("lati") int lati, @RequestParam("lng") int lng, @RequestParam("rad") int rad, Map model) {
+        
+        
+        
+        
+        
+        return "redirect: /";
     }
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)

@@ -27,16 +27,14 @@ public class ForRentDaoImpl implements ForRentDao {
     private static final String SQL_CREATE_FOR_RENT = "insert into for_rent(rent, street_address, street_name, city, state, zip, mj, grow, lat, lon) values (?,?,?,?,?,?,?,?,?,?)";
     private static final String SQL_ALL_RENTALS = "select * from for_rent";
     private static final String SQL_GET_RENTAL = "select * from for_rent where id = ?";
-    private static final String SQL_ADD_PHOTOS = "insert into images(prop_id, file_name) values (?,?)";
+    private static final String SQL_ADD_PHOTOS = "insert into images(prop_id, file_name) values (?,?)"; 
+    private static final String SQL_GET_WITHIN_RADIUS = "SELECT *, ( 3959 * acos (cos ( radians(78.3232) )* cos( radians( lat ) )* cos( radians( lon ) - radians(65.3234) )+ sin ( radians(78.3232) )* sin( radians( lat ) ))) AS distance FROM for_rent HAVING distance < 6000";
     
     @Override
     public void addPhotos(int id, String fileName) {
         jdbc.update(SQL_ADD_PHOTOS,
                 id,
                 fileName);
-               
-
-
     }
     
     @Override
