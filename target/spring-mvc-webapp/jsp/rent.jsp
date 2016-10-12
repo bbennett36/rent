@@ -39,11 +39,13 @@
         <!--<div class="col-md-6" id="right">-->
         <div class="col-md-6">
             <div class="text-center">
-<!--                <input id="address" type="textbox" value="">
-                <button id='submit' type="submit">Search</button>-->
-                
-                 <input id="address" type="textbox" value="">
-                <button id='searchRadius' type="submit">Search</button>
+                <!--                <input id="address" type="textbox" value="">
+                                <button id='submit' type="submit">Search</button>-->
+
+                <form method="GET">
+                    <input id="address" type="text">
+                    <button id='searchRadius' type="submit">Search</button>
+                </form>
             </div>
             <c:forEach items="${rentals}" var="r">
                 <a href="${pageContext.request.contextPath}/rent/${r.id}">

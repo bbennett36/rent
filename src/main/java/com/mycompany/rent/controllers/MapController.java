@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -37,14 +38,13 @@ public class MapController {
     public MapController(ForRentDao forRentDao) {
         this.forRentDao = forRentDao;
     }
-    
+
     @RequestMapping(value = "/radius", method = RequestMethod.GET)
-    public String radiusSearch(@RequestParam("lati") int lati, @RequestParam("lng") int lng, @RequestParam("rad") int rad, Map model) {
-        
-        
-        
-        
-        
+    @ResponseBody
+    public String radiusSearch(HttpServletRequest request, Map model) {
+
+        String n1 = request.getParameter("lati");
+
         return "redirect: /";
     }
 
@@ -65,7 +65,7 @@ public class MapController {
         responseDetailsJson.put("data", (Object) array);//Here you can see the data in json format
 
         File file = new File("/home/brennan/_repos/rent/src/main/webapp/json/data.json");
-        
+
         String path = file.getPath();
 
         try {
@@ -81,7 +81,7 @@ public class MapController {
         } catch (IOException e) {
 
         }
-        
+
         FileReader fr = new FileReader(file);
 
         return file;

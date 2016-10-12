@@ -35,22 +35,21 @@ $(document).ready(function () {
                 $.ajax({
                     url: contextRoot + "/map/radius",
                     type: "GET",
-                    data: {"lati": lati, "lng": lng, "rad":rad }
-//                    beforeSend: function (xhr) {
-//                        xhr.setRequestHeader("Accept", "application/json");
-//                        xhr.setRequestHeader("Content-type", "application/json");
-////                codeAddress();
-//                    },
-//                    success: function (data, status) {
-////                        console.log(data);
-////                window.location = contextRoot + "/list/" + data.id;
-//
-//                    },
-//                    error: function (data, status) {
-//                        alert("bad api call");
-//                        console.log(data);
-//                        console.log(status);
-//                    }
+                    data: {"lati": lati},
+                    dataType: "json",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader("Accept", "application/json");
+                        xhr.setRequestHeader("Content-type", "application/json");
+                    },
+                    success: function (data, status) {
+                        console.log(data);
+//                window.location = contextRoot + "/list/" + data.id;
+
+                    },
+                    error: function (data, status) {
+                        alert("bad api call");
+                        console.log(status);
+                    }
                 });
             },
             error: function (data, status) {
