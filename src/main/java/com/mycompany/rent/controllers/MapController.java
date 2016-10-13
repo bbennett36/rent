@@ -7,6 +7,7 @@ package com.mycompany.rent.controllers;
 
 import com.mycompany.rent.dao.ForRentDao;
 import com.mycompany.rent.dto.ForRent;
+import com.mycompany.rent.dto.Radius;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -18,7 +19,9 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,13 +42,16 @@ public class MapController {
         this.forRentDao = forRentDao;
     }
 
-    @RequestMapping(value = "/radius", method = RequestMethod.GET)
+    @RequestMapping(value = "/radius", method = RequestMethod.POST)
     @ResponseBody
-    public String radiusSearch(HttpServletRequest request, Map model) {
+    public Radius radiusSearch(@RequestBody Radius r, HttpServletRequest request, Map model) {
+        
 
-        String n1 = request.getParameter("lati");
+//        r.setLat(request.getParameter("lati"));
+//        r.setLng(request.getParameter("lng"));
+        
 
-        return "redirect: /";
+        return r;
     }
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)

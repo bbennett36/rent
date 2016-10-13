@@ -44,7 +44,14 @@
 
                 <form method="GET">
                     <input id="address" type="text">
+                    <select id="radius">
+                        <option>25</option>
+                        <option>35</option>
+                        <option>50</option>
+
+                    </select>
                     <button id='searchRadius' type="submit">Search</button>
+
                 </form>
             </div>
             <c:forEach items="${rentals}" var="r">

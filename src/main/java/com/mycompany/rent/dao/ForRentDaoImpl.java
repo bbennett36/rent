@@ -28,8 +28,8 @@ public class ForRentDaoImpl implements ForRentDao {
     private static final String SQL_ALL_RENTALS = "select * from for_rent";
     private static final String SQL_GET_RENTAL = "select * from for_rent where id = ?";
     private static final String SQL_ADD_PHOTOS = "insert into images(prop_id, file_name) values (?,?)"; 
-    private static final String SQL_GET_WITHIN_RADIUS = "SELECT *, ( 3959 * acos (cos ( radians(78.3232) )* cos( radians( lat ) )* cos( radians( lon ) - radians(65.3234) )+ sin ( radians(78.3232) )* sin( radians( lat ) ))) AS distance FROM for_rent HAVING distance < 6000";
-    
+    private static final String SQL_GET_WITHIN_RADIUS = "SELECT *, ( 3959 * acos (cos ( radians(?) )* cos( radians( lat ) )* cos( radians( lon ) - radians(?) )+ sin ( radians(?) )* sin( radians( lat ) ))) AS distance FROM for_rent HAVING distance < ?";
+             //lat lng lat dist
     @Override
     public void addPhotos(int id, String fileName) {
         jdbc.update(SQL_ADD_PHOTOS,
@@ -77,6 +77,11 @@ public class ForRentDaoImpl implements ForRentDao {
     @Override
     public List<ForRent> allRentals() {
         return jdbc.query(SQL_ALL_RENTALS, new RentMapper());
+    }
+    
+    @Override
+    public List<ForRent> RentalRadius(String lat, String lng, String lat2, String rad) {
+        return jdbc.query(SQL_GET_WITHIN_RADIUS, new RentMapper(), lat, lng, lat2, rad);
     }
 
     private static final class RentMapper implements RowMapper<ForRent> {

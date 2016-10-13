@@ -17,6 +17,8 @@ public interface ForRentDao {
     public ForRent create(ForRent forRent);
 
     public ForRent get(int id);
+    
+    public List<ForRent> RentalRadius(String lat, String lng, String lat2, String rad);
 
     public void update(ForRent forRent);
 

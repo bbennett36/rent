@@ -12,11 +12,11 @@ $(document).ready(function () {
 
         var lati;
         var lng;
-        var rad = 30;
         var address = $('#address').val();
+        var rad = $('#radius').val();
 
 
-        e.preventDefault(); 
+        e.preventDefault();
 
 
         $.ajax({
@@ -29,21 +29,27 @@ $(document).ready(function () {
             success: function postForm(response) {
                 lati = response.results[0].locations[0].latLng.lat;
                 lng = response.results[0].locations[0].latLng.lng;
-                
+
                 console.log(lati, lng, rad);
+
+                var data = JSON.stringify({
+                    lat: lati,
+                    lng: lng,
+                    rad: rad
+                });
 
                 $.ajax({
                     url: contextRoot + "/map/radius",
-                    type: "GET",
-                    data: {"lati": lati},
-                    dataType: "json",
+                    type: "POST",
+                    data: data,
+                    dataType: 'json',
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader("Accept", "application/json");
                         xhr.setRequestHeader("Content-type", "application/json");
                     },
                     success: function (data, status) {
                         console.log(data);
-//                window.location = contextRoot + "/list/" + data.id;
+                        window.location = contextRoot + "/rent/" + data.lat + "/" + data.lng + "/" + data.rad;
 
                     },
                     error: function (data, status) {
