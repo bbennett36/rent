@@ -40,7 +40,6 @@ $(document).ready(function () {
                     growGriendly: $('#growFriendly').val(),
                     lat: lati,
                     lon: lng
-//                    photo: $('#file').val()
                 });
 
                 $.ajax({

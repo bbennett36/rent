@@ -6,6 +6,7 @@
 package com.mycompany.rent.dto;
 
 import java.io.File;
+import java.util.List;
 
 /**
  *
@@ -26,6 +27,16 @@ public class ForRent {
     private boolean growFriendly;
     private File photo;
     private String fileName;
+    private List<String> imagePaths;
+
+    public List<String> getImagePaths() {
+        return imagePaths;
+    }
+
+    public void setImagePaths(List<String> imagePaths) {
+        this.imagePaths = imagePaths;
+    }
+    
 
     public String getFileName() {
         return fileName;

@@ -61,16 +61,8 @@ public class ListingController {
     @ResponseBody
     public ForRent createForRent(@RequestBody ForRent forRent, Map model) {
 
-        String realPathtoUploads = "/home/brennan/_repos/rent/src/main/webapp/uploads/";
-
-//        String orgName = file.getOriginalFilename();
-//        forRent.setFileName(orgName);
+ 
         forRentDao.create(forRent);
-
-//        String filePath = (realPathtoUploads + forRent.getId() + orgName);
-//        File dest = new File(filePath);
-//        file.transferTo(dest);
-        String rentId = Integer.toString(forRent.getId());
 
         return forRent;
     }
@@ -109,26 +101,30 @@ public class ListingController {
     }
 
     @RequestMapping(value = "/savefiles", method = RequestMethod.POST)
-    public String crunchifySave(
-            @ModelAttribute("uploadForm") UploadForm uploadForm) throws IllegalStateException, IOException {
+    public String crunchifySave(@ModelAttribute("uploadForm") UploadForm uploadForm) throws IllegalStateException, IOException {
+        
         String saveDirectory = "/home/brennan/_repos/rent/src/main/webapp/uploads/";
 
         List<MultipartFile> crunchifyFiles = uploadForm.getFiles();
 
         List<String> fileNames = new ArrayList<String>();
+        
+        ForRent fr = forRentDao.get(uploadForm.getProp_id());
 
         if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
             for (MultipartFile multipartFile : crunchifyFiles) {
 
-                String fileName = uploadForm.getProp_id() + multipartFile.getOriginalFilename();
+                String fileName = saveDirectory + uploadForm.getProp_id() + multipartFile.getOriginalFilename();
                 if (!"".equalsIgnoreCase(fileName)) {
                     // Handle file content - multipartFile.getInputStream()
                     multipartFile
-                            .transferTo(new File(saveDirectory + fileName));
+                            .transferTo(new File(fileName));
                     fileNames.add(fileName);
                 }
             }
         }
+        
+        fr.setImagePaths(fileNames);
 
 //        map.addAttribute("files", fileNames);
         return "redirect:/";
