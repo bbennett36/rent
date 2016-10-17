@@ -7,10 +7,13 @@ package com.mycompany.rent.controllers;
 
 import com.mycompany.rent.dao.ForRentDao;
 import com.mycompany.rent.dto.ForRent;
+import com.mycompany.rent.dto.UploadForm;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -62,32 +65,30 @@ public class ListingController {
 
 //        String orgName = file.getOriginalFilename();
 //        forRent.setFileName(orgName);
-
         forRentDao.create(forRent);
 
 //        String filePath = (realPathtoUploads + forRent.getId() + orgName);
 //        File dest = new File(filePath);
 //        file.transferTo(dest);
-        
         String rentId = Integer.toString(forRent.getId());
 
         return forRent;
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String addPhoto(@PathVariable int id, Map model) {
-        
+
         ForRent rental = forRentDao.get(id);
-        
+
         model.put("rental", rental);
 
         return "photo";
 
     }
-    
+
     @RequestMapping(value = "/photo/{id}", method = RequestMethod.POST)
     public String addPhotos(@RequestParam("file") MultipartFile file, @PathVariable int id, Map model) throws IOException {
-        
+
         if (!file.isEmpty()) {
 
             ForRent rent = forRentDao.get(id);
@@ -97,15 +98,40 @@ public class ListingController {
             String orgName = file.getOriginalFilename();
             rent.setFileName(orgName);
             forRentDao.addPhotos(id, orgName);
-            String filePath = (realPathtoUploads + rent.getId() +  "_"  + orgName);
+            String filePath = (realPathtoUploads + rent.getId() + "_" + orgName);
             File dest = new File(filePath);
             file.transferTo(dest);
-            
 
             return "home";
         }
         return "home";
 
+    }
+
+    @RequestMapping(value = "/savefiles", method = RequestMethod.POST)
+    public String crunchifySave(
+            @ModelAttribute("uploadForm") UploadForm uploadForm) throws IllegalStateException, IOException {
+        String saveDirectory = "/home/brennan/_repos/rent/src/main/webapp/uploads/";
+
+        List<MultipartFile> crunchifyFiles = uploadForm.getFiles();
+
+        List<String> fileNames = new ArrayList<String>();
+
+        if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
+            for (MultipartFile multipartFile : crunchifyFiles) {
+
+                String fileName = uploadForm.getProp_id() + multipartFile.getOriginalFilename();
+                if (!"".equalsIgnoreCase(fileName)) {
+                    // Handle file content - multipartFile.getInputStream()
+                    multipartFile
+                            .transferTo(new File(saveDirectory + fileName));
+                    fileNames.add(fileName);
+                }
+            }
+        }
+
+//        map.addAttribute("files", fileNames);
+        return "redirect:/";
     }
 
 }
