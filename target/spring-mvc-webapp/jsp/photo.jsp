@@ -35,11 +35,6 @@
                 <tr>
                     <td><input name="files[0]" type="file" /></td>
                 </tr>
-
-                <tr>
-                    <td><input name="files[1]" type="file" /></td>
-                </tr>
-
             </table>
             <br />
             <input type="hidden" name="prop_id" value="${rental.id}" />
