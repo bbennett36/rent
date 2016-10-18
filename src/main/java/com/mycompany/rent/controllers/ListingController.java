@@ -119,12 +119,18 @@ public class ListingController {
                     // Handle file content - multipartFile.getInputStream()
                     multipartFile
                             .transferTo(new File(fileName));
-                    fileNames.add(fileName);
+                    fileNames.add("/rent/uploads/" + uploadForm.getProp_id() + multipartFile.getOriginalFilename());
                 }
             }
         }
         
         fr.setImagePaths(fileNames);
+        
+        
+        //Iterate through ForRent imagePath and add each path to db
+        for (String s : fr.getImagePaths()) {
+            forRentDao.addPhotos(fr.getId(), s);
+    }
 
 //        map.addAttribute("files", fileNames);
         return "redirect:/";

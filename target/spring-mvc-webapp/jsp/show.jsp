@@ -14,5 +14,10 @@
     <body>
         <%@ include file="navbar.jsp" %>
         <h1>${rental.streetAddress}</h1>
+
+        <c:forEach items="${rental.imagePaths}" var="z" varStatus="status">
+                
+                <img src="<c:out value="${z}"/>" />
+        </c:forEach>
     </body>
 </html>

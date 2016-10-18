@@ -27,30 +27,34 @@
             <button type="submit" class="btn-primary">Submit</button>
         </form>-->
 
-    <form:form method="POST" action="${pageContext.request.contextPath}/list/savefiles" modelAttribute="uploadForm" enctype="multipart/form-data">
+        <form:form method="POST" action="${pageContext.request.contextPath}/list/savefiles" modelAttribute="uploadForm" enctype="multipart/form-data">
 
-        <p>Select files to upload. Press Add button to add more file inputs.</p>
+            <p>Select files to upload. Press Add button to add more file inputs.</p>
 
-        <table id="fileTable">
-            <tr>
-                <td><input name="files[0]" type="file" /></td>
-            </tr>
-           
-        </table>
+            <table id="fileTable">
+                <tr>
+                    <td><input name="files[0]" type="file" /></td>
+                </tr>
+
+                <tr>
+                    <td><input name="files[1]" type="file" /></td>
+                </tr>
+
+            </table>
+            <br />
+            <input type="hidden" name="prop_id" value="${rental.id}" />
+            <input type="submit" value="Upload" />
+            <input id="addFile" type="button" value="Add File" />
+        </form:form>
+
         <br />
-        <input type="hidden" name="prop_id" value="${rental.id}" />
-        <input type="submit" value="Upload" />
-        <input id="addFile" type="button" value="Add File" />
-    </form:form>
+        ${rental.id}
 
-    <br />
-    ${rental.id}
-
-    <script>
+        <script>
         var contextRoot = "${pageContext.request.contextPath}";
-    </script>
+        </script>
 
-    <script src="${pageContext.request.contextPath}/js/photo.js"></script>
+        <script src="${pageContext.request.contextPath}/js/photo.js"></script>
 
-</body>
+    </body>
 </html>

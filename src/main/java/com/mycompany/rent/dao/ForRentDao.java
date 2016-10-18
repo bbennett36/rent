@@ -27,5 +27,7 @@ public interface ForRentDao {
     public List<ForRent> allRentals();
     
     public void addPhotos (int id, String fileName);
+    
+    public List<String> getImagePaths(int id);
 
 }

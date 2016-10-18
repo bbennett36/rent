@@ -57,7 +57,17 @@
             <c:forEach items="${rentals}" var="r">
                 <a href="${pageContext.request.contextPath}/rent/${r.id}">
                     <div>
-                        <img src="${pageContext.request.contextPath}/uploads/138_arlington.jpg" height="125px" width="125px" />
+                        <c:forEach items="${r.imagePaths}" var="z" begin="0" end="0" varStatus="loop">
+                            <img src="<c:out value="${z}"/>" height="125px" width="125px" />
+                        </c:forEach>
+
+
+
+                        <!--<img src="${pageContext.request.contextPath}/uploads/138_arlington.jpg" height="125px" width="125px" />-->
+
+
+
+
                         ${r.streetAddress} ${r.streetName}
                         ${r.city} ${r.state} ${r.zip}
                     </div>
