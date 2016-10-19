@@ -14,19 +14,28 @@
         <!-- Add the slick-theme.css if you want default styling -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
 
+        <style>
+            .slick-prev:before, .slick-next:before { 
+                color:red !important;
+            }
+        </style>
+
     </head>
     <body>
         <%@ include file="navbar.jsp" %>
-        <h1>${rental.streetAddress}</h1>
+        <h1 class="text-center"> ${rental.streetAddress} ${rental.streetName} 
+            <br /> ${rental.city}, ${rental.state}</h1>
 
+
+        <button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous" role="button" style="display: block;">Previous</button>
         <div class="images center-block" style="width:500px">
-            <button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous" role="button" style="display: block;">Previous</button>
             <c:forEach items="${rental.imagePaths}" var="z" varStatus="status">
 
-                <div><img src="<c:out value="${z}"/>"  height="400px" width="400px" /></div>
+                <div><img src="<c:out value="${z}"/>"  height="400px" width="500px" /></div>
                 </c:forEach>
-            <button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Next" role="button" style="display: block;">Previous</button>
         </div>
+        <button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next" role="button" style="display: block;">Next</button>
+
 
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
@@ -36,12 +45,11 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('.images').slick({
-//                $('.fade').slick({
-                    dots: true,
-                    infinite: true,
-                    speed: 500,
-                    fade: true,
-                    cssEase: 'linear'
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
+                    arrows: true
                 });
             });
         </script>
