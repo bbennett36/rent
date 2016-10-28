@@ -19,14 +19,6 @@
     <body>
         <%@ include file="navbar.jsp" %>
 
-<!--        <form method="POST" action="${pageContext.request.contextPath}/list/photo/${rental.id}" enctype="multipart/form-data">
-            <label class="custom-file">
-                <input type="file" name="file" class="custom-file-input" size="50" />
-                <span class="custom-file-control"></span>
-            </label>
-            <button type="submit" class="btn-primary">Submit</button>
-        </form>-->
-
         <form:form method="POST" action="${pageContext.request.contextPath}/list/savefiles" modelAttribute="uploadForm" enctype="multipart/form-data">
 
             <p>Select files to upload. Press Add button to add more file inputs.</p>
