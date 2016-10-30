@@ -6,10 +6,13 @@
 package com.mycompany.rent.controllers;
 
 import com.mycompany.rent.dao.ForRentDao;
+import com.mycompany.rent.dao.UserDao;
 import com.mycompany.rent.dto.ForRent;
 import com.mycompany.rent.dto.UploadForm;
+import com.mycompany.rent.dto.User;
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,10 +38,12 @@ import org.springframework.web.multipart.MultipartFile;
 public class ListingController {
 
     private ForRentDao forRentDao;
+    private UserDao userDao;
 
     @Inject
-    public ListingController(ForRentDao forRentDao) {
+    public ListingController(ForRentDao forRentDao, UserDao userDao) {
         this.forRentDao = forRentDao;
+        this.userDao = userDao;
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
@@ -59,9 +64,12 @@ public class ListingController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
-    public ForRent createForRent(@RequestBody ForRent forRent, Map model) {
+    public ForRent createForRent(@RequestBody ForRent forRent, Principal principal, Map model) {
 
- 
+        String name = principal.getName();
+        
+        User u = userDao.getByUsername(name);
+
         forRentDao.create(forRent);
 
         return forRent;
@@ -102,13 +110,13 @@ public class ListingController {
 
     @RequestMapping(value = "/savefiles", method = RequestMethod.POST)
     public String crunchifySave(@ModelAttribute("uploadForm") UploadForm uploadForm) throws IllegalStateException, IOException {
-        
+
         String saveDirectory = "/home/brennan/_repos/rent/src/main/webapp/uploads/";
 
         List<MultipartFile> crunchifyFiles = uploadForm.getFiles();
 
         List<String> fileNames = new ArrayList<String>();
-        
+
         ForRent fr = forRentDao.get(uploadForm.getProp_id());
 
         if (null != crunchifyFiles && crunchifyFiles.size() > 0) {
@@ -123,14 +131,13 @@ public class ListingController {
                 }
             }
         }
-        
+
         fr.setImagePaths(fileNames);
-        
-        
+
         //Iterate through ForRent imagePath and add each path to db
         for (String s : fr.getImagePaths()) {
             forRentDao.addPhotos(fr.getId(), s);
-    }
+        }
 
 //        map.addAttribute("files", fileNames);
         return "redirect:/";

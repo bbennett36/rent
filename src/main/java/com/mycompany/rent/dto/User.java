@@ -5,6 +5,8 @@
  */
 package com.mycompany.rent.dto;
 
+import java.util.List;
+
 /**
  *
  * @author brennan
@@ -15,7 +17,16 @@ public class User {
     private String username;
     private String password;
     private int enabled;
+    private List<ForRent> rentals;
 
+    public List<ForRent> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<ForRent> rentals) {
+        this.rentals = rentals;
+    }
+    
     public int getEnabled() {
         return enabled;
     }

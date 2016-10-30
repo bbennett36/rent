@@ -15,5 +15,6 @@ public interface UserDao {
     
     public User create(User user);
     
+    public User getByUsername(String username);
     
 }
