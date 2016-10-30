@@ -18,6 +18,8 @@ public interface ForRentDao {
 
     public ForRent get(int id);
     
+    public List<ForRent> rentalsByUserId(int user_id);
+    
     public List<ForRent> RentalRadius(String lat, String lng, String lat2, String rad);
 
     public void update(ForRent forRent);

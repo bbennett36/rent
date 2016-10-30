@@ -24,12 +24,13 @@ public class ForRentDaoImpl implements ForRentDao {
         this.jdbc = jdbc;
     }
 
-    private static final String SQL_CREATE_FOR_RENT = "insert into for_rent(rent, street_address, street_name, city, state, zip, mj, grow, lat, lon) values (?,?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_CREATE_FOR_RENT = "insert into for_rent(rent, street_address, street_name, city, state, zip, mj, grow, lat, lon, user_id) values (?,?,?,?,?,?,?,?,?,?,?)";
     private static final String SQL_ALL_RENTALS = "select * from for_rent";
     private static final String SQL_GET_RENTAL = "select * from for_rent where id = ?";
     private static final String SQL_ADD_PHOTOS = "insert into images(prop_id, file_name) values (?,?)";
     private static final String SQL_GET_WITHIN_RADIUS = "SELECT *, ( 3959 * acos (cos ( radians(?) )* cos( radians( lat ) )* cos( radians( lon ) - radians(?) )+ sin ( radians(?) )* sin( radians( lat ) ))) AS distance FROM for_rent HAVING distance < ?";
     private static final String SQL_GET_IMAGEPATHS = "select * from images where prop_id = ?";
+    private static final String SQL_GET_BY_USERID = "select * from for_rent where user_id = ?";
     //lat lng lat dist
 
     @Override
@@ -51,7 +52,8 @@ public class ForRentDaoImpl implements ForRentDao {
                 forRent.isMjFriendly(),
                 forRent.isGrowFriendly(),
                 forRent.getLat(),
-                forRent.getLon());
+                forRent.getLon(),
+                forRent.getUser_id());
 
         Integer id = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
 
@@ -91,6 +93,11 @@ public class ForRentDaoImpl implements ForRentDao {
         return jdbc.query(SQL_GET_IMAGEPATHS, new ImageMapper(), id);
     }
 
+    @Override
+    public List<ForRent> rentalsByUserId(int user_id) {
+        return jdbc.query(SQL_GET_BY_USERID, new RentMapper(), user_id);
+    }
+
     private final class RentMapper implements RowMapper<ForRent> {
 
         @Override
@@ -109,6 +116,7 @@ public class ForRentDaoImpl implements ForRentDao {
             fr.setGrowFriendly(rs.getBoolean("grow"));
             fr.setLat(rs.getString("lat"));
             fr.setLon(rs.getString("lon"));
+            fr.setUser_id(rs.getInt("user_id"));
             fr.setImagePaths(getImagePaths(fr.getId()));
 
             return fr;

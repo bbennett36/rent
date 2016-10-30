@@ -25,6 +25,7 @@ public class UserDaoImpl implements UserDao {
 
     private static final String SQL_CREATE_USER = "insert into user(username, password, enabled) values (?,?,?)";
     private static final String SQL_GET_USERNAME = "select * from user where username = ?";
+    private static final String SQL_ADD_USER_ROLE = "insert into user_roles (user_id, role_id) values (?,?)";
 
     @Override
     public User create(User user) {
@@ -36,15 +37,22 @@ public class UserDaoImpl implements UserDao {
         Integer id = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
 
         user.setId(id);
+        
+        addUserRole(user.getId(), 1);
 
         return user;
     }
 
     @Override
-    public User getByUsername(String username) {
-     return jdbc.queryForObject(SQL_GET_USERNAME, new UserMapper(), username);
+    public void addUserRole(int user_id, int role_id) {
+        jdbc.update(SQL_ADD_USER_ROLE, user_id, role_id);
     }
-    
+
+    @Override
+    public User getByUsername(String username) {
+        return jdbc.queryForObject(SQL_GET_USERNAME, new UserMapper(), username);
+    }
+
     private static final class UserMapper implements RowMapper<User> {
 
         @Override

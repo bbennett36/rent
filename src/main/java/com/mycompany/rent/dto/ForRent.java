@@ -28,6 +28,16 @@ public class ForRent {
     private File photo;
     private String fileName;
     private List<String> imagePaths;
+    private int user_id;
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+    
 
     public List<String> getImagePaths() {
         return imagePaths;

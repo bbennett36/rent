@@ -5,9 +5,11 @@
  */
 package com.mycompany.rent.controllers;
 
+import com.mycompany.rent.dao.ForRentDao;
 import com.mycompany.rent.dao.UserDao;
 import com.mycompany.rent.dto.ForRent;
 import com.mycompany.rent.dto.User;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
@@ -26,10 +28,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 
     private UserDao userDao;
+    private ForRentDao forRentDao;
 
     @Inject
-    public UserController(UserDao userDao) {
+    public UserController(UserDao userDao, ForRentDao forRentDao) {
         this.userDao = userDao;
+        this.forRentDao = forRentDao;
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -51,6 +55,20 @@ public class UserController {
     public String login(Map model) {
 
         return "signup";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profilePage(Principal principal, Map model) {
+
+        String name = principal.getName();
+
+        User u = userDao.getByUsername(name);
+        
+        List<ForRent> rentals = forRentDao.rentalsByUserId(u.getId());
+        
+        model.put("rentals", rentals);
+
+        return "profile";
     }
 
 }

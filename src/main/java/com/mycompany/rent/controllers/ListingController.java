@@ -69,6 +69,8 @@ public class ListingController {
         String name = principal.getName();
         
         User u = userDao.getByUsername(name);
+        
+        forRent.setUser_id(u.getId());
 
         forRentDao.create(forRent);
 
