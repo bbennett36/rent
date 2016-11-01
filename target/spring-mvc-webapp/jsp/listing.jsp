@@ -16,19 +16,26 @@
 
         <div class="container center_div">
             <form method="GET">
+                <input type="text" class="form-control" id="propType" name="propType" value="House" placeholder="Property Type" />
                 <input type="text" class="form-control" id="rent" name="rent" value="1000" placeholder="Monthly Rent Amount" />
                 <input type="text" class="form-control" id="streetAddress" name="streetAddress" value="2821" placeholder="Stress Address" />
-                <input type="text" class="form-control" id='streetName' name="streetName" value="lee rd" placeholder="Stress Name" />
+                <input type="text" class="form-control" id="unitNum" name="unitNum" value="134" placeholder="Unit Number" />
                 <input type="text" class="form-control" id='city' name="city" value="Silver Lake" placeholder="City" />
                 <input type="text" class="form-control" id='state' name="state" value="Ohio" placeholder="State" />
                 <input type="text" class="form-control" id='zip' name="zip" value="44224" placeholder="Zip" />
+                <br />
+                <input type="text" class="form-control" id="beds" name="beds" value="4" placeholder="Bedrooms" />
+                <input type="text" class="form-control" id="baths" name="baths" value="3" placeholder="Bathrooms" />
+                <input type="text" class="form-control" id="sqft" name="sqft" value="1000" placeholder="SqFt" />
+                <input type="text" class="form-control" id="leaseTerms" name="leaseTerms" value="6 months" placeholder="Lease Terms" />
+
 
 
                 <input type="checkbox" id='mjFriendly' name="mjFriendly" value="true" /> 420 Friendly
                 <br />
                 <input type="checkbox" id='growFriendly' name="growFriendly" value="true" />Grow Friendly
                 <br />
-                
+
                 <!--<input type="file" name="file" id="file" class="custom-file-input" size="50" />-->
 
                 <button type="submit" id="submitListing" class="btn-primary btn-lg center-block">Submit</button>

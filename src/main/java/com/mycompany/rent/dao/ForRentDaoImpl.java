@@ -24,7 +24,7 @@ public class ForRentDaoImpl implements ForRentDao {
         this.jdbc = jdbc;
     }
 
-    private static final String SQL_CREATE_FOR_RENT = "insert into for_rent(rent, street_address, street_name, city, state, zip, mj, grow, lat, lon, user_id) values (?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_CREATE_FOR_RENT = "insert into for_rent(rent, street_address, city, state, zip, mj, grow, lat, lon, user_id, propType, unitNum, beds, bath, sqft, lease_terms) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String SQL_ALL_RENTALS = "select * from for_rent";
     private static final String SQL_GET_RENTAL = "select * from for_rent where id = ?";
     private static final String SQL_ADD_PHOTOS = "insert into images(prop_id, file_name) values (?,?)";
@@ -45,7 +45,6 @@ public class ForRentDaoImpl implements ForRentDao {
         jdbc.update(SQL_CREATE_FOR_RENT,
                 forRent.getRent(),
                 forRent.getStreetAddress(),
-                forRent.getStreetName(),
                 forRent.getCity(),
                 forRent.getState(),
                 forRent.getZip(),
@@ -53,7 +52,13 @@ public class ForRentDaoImpl implements ForRentDao {
                 forRent.isGrowFriendly(),
                 forRent.getLat(),
                 forRent.getLon(),
-                forRent.getUser_id());
+                forRent.getUser_id(),
+                forRent.getPropType(),
+                forRent.getUnitNum(),
+                forRent.getBeds(),
+                forRent.getBaths(),
+                forRent.getSqFt(),
+                forRent.getLeaseTerms());
 
         Integer id = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
 
@@ -108,7 +113,6 @@ public class ForRentDaoImpl implements ForRentDao {
             fr.setId(rs.getInt("id"));
             fr.setRent(rs.getInt("rent"));
             fr.setStreetAddress(rs.getString("street_address"));
-            fr.setStreetName(rs.getString("street_name"));
             fr.setCity(rs.getString("city"));
             fr.setState(rs.getString("state"));
             fr.setZip(rs.getString("zip"));
@@ -117,6 +121,12 @@ public class ForRentDaoImpl implements ForRentDao {
             fr.setLat(rs.getString("lat"));
             fr.setLon(rs.getString("lon"));
             fr.setUser_id(rs.getInt("user_id"));
+            fr.setPropType(rs.getString("propType"));
+            fr.setUnitNum(rs.getString("unitNum"));
+            fr.setBeds(rs.getString("beds"));
+            fr.setBeds(rs.getString("bath"));
+            fr.setSqFt(rs.getString("sqft"));
+            fr.setLeaseTerms(rs.getString("lease_terms"));
             fr.setImagePaths(getImagePaths(fr.getId()));
 
             return fr;

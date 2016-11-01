@@ -16,7 +16,6 @@ public class ForRent {
 
     private int id;
     private String streetAddress;
-    private String streetName;
     private String city;
     private String state;
     private String zip;
@@ -29,6 +28,17 @@ public class ForRent {
     private String fileName;
     private List<String> imagePaths;
     private int user_id;
+    
+    private String propType;
+    private String unitNum;
+    private boolean hideAddress;
+    private String beds;
+    private String baths;
+    private String sqFt;
+    private String leaseTerms;
+    private String desc;
+    
+    
 
     public int getUser_id() {
         return user_id;
@@ -88,11 +98,11 @@ public class ForRent {
     }
 
     public String getLon() {
-        return lng;
+        return getLng();
     }
 
     public void setLon(String lon) {
-        this.lng = lon;
+        this.setLng(lon);
     }
 
     /**
@@ -114,20 +124,6 @@ public class ForRent {
      */
     public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
-    }
-
-    /**
-     * @return the streetName
-     */
-    public String getStreetName() {
-        return streetName;
-    }
-
-    /**
-     * @param streetName the streetName to set
-     */
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
     }
 
     /**
@@ -209,6 +205,118 @@ public class ForRent {
      */
     public void setGrowFriendly(boolean growFriendly) {
         this.growFriendly = growFriendly;
+    }
+
+    /**
+     * @return the propType
+     */
+    public String getPropType() {
+        return propType;
+    }
+
+    /**
+     * @param propType the propType to set
+     */
+    public void setPropType(String propType) {
+        this.propType = propType;
+    }
+
+    /**
+     * @return the unitNum
+     */
+    public String getUnitNum() {
+        return unitNum;
+    }
+
+    /**
+     * @param unitNum the unitNum to set
+     */
+    public void setUnitNum(String unitNum) {
+        this.unitNum = unitNum;
+    }
+
+    /**
+     * @return the hideAddress
+     */
+    public boolean isHideAddress() {
+        return hideAddress;
+    }
+
+    /**
+     * @param hideAddress the hideAddress to set
+     */
+    public void setHideAddress(boolean hideAddress) {
+        this.hideAddress = hideAddress;
+    }
+
+    /**
+     * @return the beds
+     */
+    public String getBeds() {
+        return beds;
+    }
+
+    /**
+     * @param beds the beds to set
+     */
+    public void setBeds(String beds) {
+        this.beds = beds;
+    }
+
+    /**
+     * @return the baths
+     */
+    public String getBaths() {
+        return baths;
+    }
+
+    /**
+     * @param baths the baths to set
+     */
+    public void setBaths(String baths) {
+        this.baths = baths;
+    }
+
+    /**
+     * @return the sqFt
+     */
+    public String getSqFt() {
+        return sqFt;
+    }
+
+    /**
+     * @param sqFt the sqFt to set
+     */
+    public void setSqFt(String sqFt) {
+        this.sqFt = sqFt;
+    }
+
+    /**
+     * @return the leaseTerms
+     */
+    public String getLeaseTerms() {
+        return leaseTerms;
+    }
+
+    /**
+     * @param leaseTerms the leaseTerms to set
+     */
+    public void setLeaseTerms(String leaseTerms) {
+        this.leaseTerms = leaseTerms;
+    }
+
+    /**
+     * @return the desc
+     */
+    public String getDesc() {
+        return desc;
+    }
+
+    /**
+     * @param desc the desc to set
+     */
+    public void setDesc(String desc) {
+        this.desc = desc;
     }
 
 }

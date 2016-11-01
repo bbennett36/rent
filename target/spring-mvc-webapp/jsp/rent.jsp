@@ -68,7 +68,7 @@
 
 
 
-                        ${r.streetAddress} ${r.streetName}
+                        ${r.streetAddress}
                         ${r.city} ${r.state} ${r.zip}
                     </div>
                 </a>
@@ -85,7 +85,7 @@
 
     <!-- Placed at the end of the document so the pages load faster -->
     <!--<script src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>-->
-    <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <!--<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>-->
 
 </body>
 </html>

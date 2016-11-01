@@ -30,17 +30,23 @@ $(document).ready(function () {
                 lng = response.results[0].locations[0].latLng.lng;
                 console.log(lati, lng);
                 var listData = JSON.stringify({
+                    propType: $('#propType').val(),
                     rent: $('#rent').val(),
                     streetAddress: $('#streetAddress').val(),
-                    streetName: $('#streetName').val(),
+                    unitNum: $('#unitNum').val(),
                     city: $('#city').val(),
                     state: $('#state').val(),
                     zip: $('#zip').val(),
                     mjFriendly: $('#mjFriendly').val(),
                     growGriendly: $('#growFriendly').val(),
+                    beds: $('#beds').val(),
+                    baths: $('#baths').val(),
+                    sqFt: $('#sqft').val(),
+                    leaseTerms: $('#leaseTerms').val(),
                     lat: lati,
                     lon: lng
                 });
+
 
                 $.ajax({
                     url: contextRoot + "/list/create",
@@ -54,7 +60,7 @@ $(document).ready(function () {
                     },
                     success: function (data, status) {
                         console.log(data);
-                window.location = contextRoot + "/list/" + data.id;
+                        window.location = contextRoot + "/list/" + data.id;
 
                     },
                     error: function (data, status) {

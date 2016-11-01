@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>${rental.streetAddress} ${rental.streetName} ${rental.city} ${rental.state}</title>
+        <title>${rental.streetAddress} ${rental.city} ${rental.state}</title>
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
         <!-- Add the slick-theme.css if you want default styling -->
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
@@ -23,7 +23,7 @@
     </head>
     <body>
         <%@ include file="navbar.jsp" %>
-        <h1 class="text-center"> ${rental.streetAddress} ${rental.streetName} 
+        <h1 class="text-center"> ${rental.streetAddress} 
             <br /> ${rental.city}, ${rental.state}</h1>
 
 

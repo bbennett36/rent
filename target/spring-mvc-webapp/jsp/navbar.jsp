@@ -17,8 +17,8 @@
         <script src="${pageContext.request.contextPath}/js/map.js"></script>
         <script src="${pageContext.request.contextPath}/js/radius.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEqFPxjP_ubeG9tLbj3P0aHUoqNi35rts&callback=initMap"
-        async defer></script>
+        <!--        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEqFPxjP_ubeG9tLbj3P0aHUoqNi35rts&callback=initMap"
+                async defer></script>-->
     </head>
     <body>
 
@@ -49,7 +49,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li> 
                                 <sec:authorize access="!isAuthenticated()">
-                                <a href="${pageContext.request.contextPath}/user/signup"><strong>Sign up</strong></a>
+                                    <a href="${pageContext.request.contextPath}/user/signup"><strong>Sign up</strong></a>
                                 </sec:authorize>
                                 <sec:authorize access="isAuthenticated()">
                                     <a href="${pageContext.request.contextPath}/user/profile"><strong>Profile</strong></a>
@@ -100,7 +100,7 @@
                                 <!--<a href="#" data-toggle="modal" data-target="#bannerformmodal"><strong><span class="glyphicon glyphicon-log-in"></span> Login</strong></a>-->
                             </sec:authorize>
                             <sec:authorize access="isAuthenticated()">
-                    <a href="${pageContext.request.contextPath}/logout"><strong> <span class="glyphicon glyphicon-log-out"></span> Logout</strong></a>
+                                <a href="${pageContext.request.contextPath}/logout"><strong> <span class="glyphicon glyphicon-log-out"></span> Logout</strong></a>
                             </sec:authorize>
                             </li>
                         </ul>
@@ -110,6 +110,8 @@
                 <!--/.container-fluid -->
             </nav>
         </div>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     </body>
 </html>
