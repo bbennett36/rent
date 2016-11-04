@@ -74,6 +74,12 @@
                 </a>
                 <hr>
             </c:forEach>
+            <ul class="pagination pagination-sm pull-right">
+                <c:forEach items="${pages}" var="page">
+                    <li><a href="${pageContext.request.contextPath}/rent/rentals?page=${page}">${page}</a></li>
+
+                </c:forEach>
+            </ul>   
         </div>
         <div class="col-md-3"></div>
 

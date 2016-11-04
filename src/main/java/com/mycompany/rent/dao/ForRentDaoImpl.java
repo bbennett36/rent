@@ -31,6 +31,10 @@ public class ForRentDaoImpl implements ForRentDao {
     private static final String SQL_GET_WITHIN_RADIUS = "SELECT *, ( 3959 * acos (cos ( radians(?) )* cos( radians( lat ) )* cos( radians( lon ) - radians(?) )+ sin ( radians(?) )* sin( radians( lat ) ))) AS distance FROM for_rent HAVING distance < ?";
     private static final String SQL_GET_IMAGEPATHS = "select * from images where prop_id = ?";
     private static final String SQL_GET_BY_USERID = "select * from for_rent where user_id = ?";
+
+    private static final String SQL_ACTIVE_POST_COUNT = "SELECT COUNT(id) From for_rent";
+    
+     private static final String SQL_GET_PAGINATION_WITH_LIMIT = "SELECT * from for_rent LIMIT ?, 25";
     //lat lng lat dist
 
     @Override
@@ -103,6 +107,18 @@ public class ForRentDaoImpl implements ForRentDao {
         return jdbc.query(SQL_GET_BY_USERID, new RentMapper(), user_id);
     }
 
+    @Override
+    public Integer getNumOfRentals() {
+        List<Integer> count = jdbc.query(SQL_ACTIVE_POST_COUNT, new CountMapper());
+        int numOfPosts = count.get(0);
+        return numOfPosts;
+    }
+    
+    @Override
+    public List<ForRent> listRentalsWithLimit(Integer offset) {
+        return jdbc.query(SQL_GET_PAGINATION_WITH_LIMIT, new RentMapper(), offset);
+    }
+
     private final class RentMapper implements RowMapper<ForRent> {
 
         @Override
@@ -147,6 +163,15 @@ public class ForRentDaoImpl implements ForRentDao {
 
         }
 
+    }
+    
+     private static final class CountMapper implements RowMapper<Integer> {
+
+        @Override
+        public Integer mapRow(ResultSet rs, int i) throws SQLException {
+            Integer count = rs.getInt(1);
+            return count;
+        }
     }
 
 }

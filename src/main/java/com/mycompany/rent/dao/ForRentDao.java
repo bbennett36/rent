@@ -17,9 +17,9 @@ public interface ForRentDao {
     public ForRent create(ForRent forRent);
 
     public ForRent get(int id);
-    
+
     public List<ForRent> rentalsByUserId(int user_id);
-    
+
     public List<ForRent> RentalRadius(String lat, String lng, String lat2, String rad);
 
     public void update(ForRent forRent);
@@ -27,9 +27,13 @@ public interface ForRentDao {
     public void delete(ForRent forRent);
 
     public List<ForRent> allRentals();
-    
-    public void addPhotos (int id, String fileName);
-    
+
+    public void addPhotos(int id, String fileName);
+
     public List<String> getImagePaths(int id);
 
-}
+    //pagenation
+    public Integer getNumOfRentals();
+    public List<ForRent> listRentalsWithLimit(Integer offset);
+
+    }

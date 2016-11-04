@@ -7,6 +7,7 @@ package com.mycompany.rent.controllers;
 
 import com.mycompany.rent.dao.ForRentDao;
 import com.mycompany.rent.dto.ForRent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -32,9 +34,20 @@ public class RentController {
     }
 
     @RequestMapping(value = "/rentals", method = RequestMethod.GET)
-    public String rentPage(Map model) {
+    public String rentPage(Map model, @RequestParam(value = "page", required = false) Integer pageNumber) {
+        
+        List<Integer> pages = getPages(25);// set limit of post per page
+        model.put("pages", pages);
 
-        List<ForRent> rentals = forRentDao.allRentals();
+        Integer offset;
+        if (pageNumber == null) {
+            offset = 0;
+        } else {
+            offset = getOffset(pageNumber);
+        }
+
+//        List<ForRent> rentals = forRentDao.allRentals();
+        List<ForRent> rentals = forRentDao.listRentalsWithLimit(offset);
 
         model.put("rentals", rentals);
 
@@ -67,4 +80,24 @@ public class RentController {
         return "show";
 
     }
+    
+     public Integer getOffset(Integer pageNumber) {
+        Integer numberOfPosts = 25;
+        Integer offset = (pageNumber * numberOfPosts) - numberOfPosts;
+        return offset;
+    }
+
+    public List<Integer> getPages(Integer number) {
+
+        Integer count = forRentDao.getNumOfRentals();
+        Integer numberOfPages = (count / number);
+        Integer reminder=(count%number);
+        numberOfPages += reminder;
+        List<Integer> pages = new ArrayList();
+        for (int i = 1; i <= numberOfPages; i++) {
+            pages.add(i);
+        }
+        return pages;
+    }
+
 }
