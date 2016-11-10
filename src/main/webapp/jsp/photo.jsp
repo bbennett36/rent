@@ -34,14 +34,42 @@
             <input id="addFile" type="button" value="Add File" />
         </form:form>
 
+        <!--        <div class="agile-its">
+                    <h2>File Upload</h2>
+                    <div class="w3layouts">
+                        <div class="photos-upload-view">
+                            <form id="upload" action="index.html" method="POST" enctype="multipart/form-data">
+        <%--<form:form method="POST" action="${pageContext.request.contextPath}/list/savefiles" modelAttribute="uploadForm" enctype="multipart/form-data">--%>
+            <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="300000" />
+            <div class="agileinfo">
+                <input type="submit" class="choose" value="Choose file..">
+                <h3>OR</h3>
+                <input type="file" class="choose" id="fileselect"  value="Choose file.." name="files[0]" />
+                <input type="hidden" name="prop_id" value="${rental.id}" />
+                <div id="filedrag">drag and drop files here</div>
+            </div>
+
+            <div id="messages">
+                <p>Status Messages</p>
+            </div>
+            <input type="submit" value="Upload" />
+        <%--</form:form>--%>
+</div>
+<div class="clearfix"></div>-->
+        <!--<script src="js/filedrag.js"></script>-->
+
+
+
+
         <br />
         ${rental.id}
 
         <script>
-        var contextRoot = "${pageContext.request.contextPath}";
+            var contextRoot = "${pageContext.request.contextPath}";
         </script>
 
         <script src="${pageContext.request.contextPath}/js/photo.js"></script>
+<!--<script src="${pageContext.request.contextPath}/js/filedrag.js"></script>-->
 
     </body>
 </html>

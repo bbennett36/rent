@@ -23,65 +23,94 @@
     <body>
         <%@ include file="navbar.jsp" %>
 
-        <!--<div class="container">-->
 
+        <div class="container">
 
-
-        <!--<div class="col-md-6" id="map">-->
-
-
-
-
-        <!--<div id="map"></div>-->
-        <!--</div>-->
-
-        <div class="col-md-3"></div>
-        <!--<div class="col-md-6" id="right">-->
-        <div class="col-md-6">
-            <div class="text-center">
-                <!--                <input id="address" type="textbox" value="">
-                                <button id='submit' type="submit">Search</button>-->
-
-                <form method="GET">
-                    <input id="address" type="text">
-                    <select id="radius">
-                        <option>25</option>
-                        <option>35</option>
-                        <option>50</option>
-
-                    </select>
-                    <button id='searchRadius' type="submit">Search</button>
-
-                </form>
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <form method="GET">
+                            <input id="address" type="text">
+                            <select id="radius">
+                                <option>25</option>
+                                <option>35</option>
+                                <option>50</option>
+                            </select>
+                            <button id='searchRadius' type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
             </div>
+            <!-- /.row -->
+
+            <!-- Project One -->
             <c:forEach items="${rentals}" var="r">
                 <a href="${pageContext.request.contextPath}/rent/${r.id}">
-                    <div>
-                        <c:forEach items="${r.imagePaths}" var="z" begin="0" end="0" varStatus="loop">
-                            <img src="<c:out value="${z}"/>" height="125px" width="125px" />
-                        </c:forEach>
-
-
-
-                        <!--<img src="${pageContext.request.contextPath}/uploads/138_arlington.jpg" height="125px" width="125px" />-->
-
-
-
-
-                        ${r.streetAddress}
-                        ${r.city} ${r.state} ${r.zip}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <c:forEach items="${r.imagePaths}" var="z" begin="0" end="0" varStatus="loop">
+                                <img class="img-responsive" src="<c:out value="${z}"/>" height="700px" width="300px" />
+                            </c:forEach>
+                        </div>
+                        <div class="col-md-7">
+                            <!--<a href="${pageContext.request.contextPath}/rent/${r.id}">-->
+                            <h1>${r.streetAddress}
+                                ${r.city} ${r.state} ${r.zip}</h1>
+                            <!--</a>-->
+                        </div>
                     </div>
                 </a>
                 <hr>
             </c:forEach>
-            <ul class="pagination pagination-sm pull-right">
-                <c:forEach items="${pages}" var="page">
-                    <li><a href="${pageContext.request.contextPath}/rent/rentals?page=${page}">${page}</a></li>
+            <!-- /.row -->
 
-                </c:forEach>
-            </ul>   
+
+
+
+            <!-- Pagination -->
+            <div class="row text-center">
+                <div class="col-lg-12">
+                    <ul class="pagination">
+                        <li>
+                            <a href="#">&laquo;</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                        <li>
+                            <a href="#">4</a>
+                        </li>
+                        <li>
+                            <a href="#">5</a>
+                        </li>
+                        <li>
+                            <a href="#">&raquo;</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.row -->
+
+            <hr>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; Your Website 2014</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </footer>
+
         </div>
-        <div class="col-md-3"></div>
 
     </div>
 
@@ -92,6 +121,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <!--<script src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>-->
     <!--<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>-->
+    <!--<script src="${pageContext.request.contextPath}/js/radius.js"></script>-->
 
 </body>
 </html>

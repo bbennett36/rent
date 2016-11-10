@@ -28,7 +28,7 @@
                 <tr>
                     <td>
                         <a href="${pageContext.request.contextPath}/rent/${r.id}">
-                            <p>${r.streetAddress} ${r.streetName} ${r.city} ${r.state} ${r.zip}</p></a>
+                            <p>${r.streetAddress} ${r.city} ${r.state} ${r.zip}</p></a>
                     </td>
                 </tr>
             </c:forEach>

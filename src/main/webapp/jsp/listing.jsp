@@ -40,15 +40,112 @@
 
                 <button type="submit" id="submitListing" class="btn-primary btn-lg center-block">Submit</button>
             </form>
+            <!--</div>-->
+
+            <div class="main">
+                <h1>Product Delivery Form Widget</h1>
+                <div class="agileinfo_main">
+                    <form id="testform" action="#" method="post" novalidate>
+                        <fieldset style="border: 1px solid #999">
+                            <legend>From :</legend>
+
+                            <p for="country" class="w3_field1">Country</p>
+                            <select id="country" name="country" required>
+                                <option value="usa">USA</option>
+                            </select>
+
+                            <p for="city">City</p>
+                            <input id="city" name="city" type="text" required data-error-msg="We need to know which city" />
+
+                            <p for="pincode">Pincode</p>
+                            <input id="pincode" name="pincode" type="text" required data-error-msg="Please enter a valid 6 digit pincode" />
+
+                        </fieldset>
+
+                        <fieldset class="w3agile_field" style="border: 1px solid #999">
+                            <legend>To :</legend>
+
+                            <p for="country1" class="w3_field1">Country</p>
+                            <select id="country1" name="country1" required>
+                                <option value="greenland">Greenland</option>
+                                <option value="algeria">Algeria</option>
+                                <option value="angola">Angola</option>
+                                <option value="belgium">Belgium</option>
+                                <option value="cambodia">Cambodia</option>
+                                <option value="cyprus">Cyprus</option>
+                                <option value="jamaica">Jamaica</option>
+                            </select>
+
+                            <p for="city1">City</p>
+                            <input id="city1" name="city" type="text" required data-error-msg="We need to know which city" />
+
+                            <p for="pincode1">Pincode</p>
+                            <input id="pincode1" name="pincode" type="text" required data-error-msg="Please enter a valid 6 digit pincode" />
+
+                        </fieldset>
+
+                        <fieldset style="border: 1px solid #999">
+                            <legend>Customer Details :</legend>
+
+                            <p for="firstName" class="w3_field1">Name</p>
+                            <input id="firstName" name="firstName" type="text" required data-error-msg="We need to know who you are" />
+
+                            <p for="phoneNum">Phone number</p>
+                            <input id="phoneNum" name="phoneNum" type="tel" required data-error-msg="Please enter your phone number" />
+
+                            <p for="emailAddress">Email address</p>
+                            <input id="emailAddress" name="emailAddress" type="email" required data-error-msg="Please enter your valid email address" ></input>
+
+                            <p for="secondName">Content</p>
+                            <input id="secondName" name="secondName" type="text" required data-error-msg="We need to know which content you are delivering" />
+
+                            <p for="weight">Weight</p>
+                            <input id="weight" name="weight" type="number" min="5" required data-error-msg="We need to know content weight"></input>
+                            <select id="weight" name="weight" required>
+                                <option value="gms">gms</option>
+                                <option value="kgs">Kgs</option>
+                            </select>
+
+                            <p for="pickdate">Pick Up Date</p>
+                            <input class="date" id="datepicker" name="Text" type="text" value="mm/dd/yyyy" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                        this.value = '2/08/2013';
+                                    }" required="">
+
+                            <p for="city2">City</p>
+                            <input id="city2" name="city" type="text" required data-error-msg="We need to know which city" />
+
+                            <p for="state">State</p>
+                            <input id="state" name="state" type="text" required data-error-msg="We need to know which state" />
+
+                            <p for="pincode2">Pincode</p>
+                            <input id="pincode2" name="pincode" type="text" required data-error-msg="Please enter a valid 6 digit pincode" />
+
+                            <p for="pickaddress" class="w3_textarea">Pick Up Address</p>
+                            <textarea id="pickaddress" name="pickaddress" placeholder=" " required data-error-msg="Please enter valid address"></textarea>
+
+                        </fieldset>
+
+                        <button id="expandBtn" type="button" class="expand-trigger" aria-expanded="false" aria-controls="collapsedSection">Ask any question?</button>
+                        <div id="collapsedSection" aria-hidden="true">
+                            <p for="hiddenInput">This field may or may not be visible</p>
+                            <input id="hiddenInput" name="hiddenInput" type="text" required data-error-msg="You wanted an extra question"></input>
+                        </div>
+
+                        <input type="submit" value="Submit">
+                        <input type="reset" value="Reset" />
+
+                    </form>
+                </div>
+            </div>
         </div>
 
-        <script>
-            var contextRoot = "${pageContext.request.contextPath}";
-        </script>
+            <script>
+                var contextRoot = "${pageContext.request.contextPath}";
+            </script>
 
-        <script src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-        <script src="${pageContext.request.contextPath}/js/form2.js"></script>
+<!--            <script src="${pageContext.request.contextPath}/js/jquery-3.0.0.min.js"></script>
+            <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>-->
+            <script src="${pageContext.request.contextPath}/js/form2.js"></script>
 
     </body>
 </html>

@@ -34,7 +34,7 @@ public class ForRentDaoImpl implements ForRentDao {
 
     private static final String SQL_ACTIVE_POST_COUNT = "SELECT COUNT(id) From for_rent";
     
-     private static final String SQL_GET_PAGINATION_WITH_LIMIT = "SELECT * from for_rent LIMIT ?, 25";
+     private static final String SQL_GET_PAGINATION_WITH_LIMIT = "SELECT * from for_rent LIMIT ?, 3";
     //lat lng lat dist
 
     @Override
