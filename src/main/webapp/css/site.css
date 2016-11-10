@@ -557,3 +557,72 @@ button.expand-trigger[aria-expanded="true"]:before {
 }
 
 
+
+
+
+/*.agile-its{
+	width:35%;
+	margin:50px auto;
+	background:#fff;
+
+}
+.agileinfo{
+	position:relative;
+}
+input[type="file"]{
+    position: absolute;
+    top: 0px;
+    left: 23%;
+    padding: 8px 5px;
+    opacity: 0;
+    cursor: pointer;
+}
+h3{
+	text-align:center;
+	margin-top:10px;
+}
+#filedrag
+{
+	display: none;
+    font-weight: 600;
+    text-align: center;
+    padding: 25px 0;
+    margin: 25px 0;
+    color: #f3c500;
+    border: 2px dashed #f3c500;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+    cursor: default;
+    font-size: 20px;
+}
+
+#filedrag.hover
+{
+	color: #f00;
+	border-color: #f00;
+	border-style: solid;
+	box-shadow: inset 0 3px 4px #888;
+}
+#messages {
+    padding: 15px 10px;
+    margin: 15px 0;
+    border: 1px solid #00BCD4;
+}
+#messages p {
+    color: #555;
+    font-size: 14px;
+	font-weight:700;
+}
+input[type="submit"]{
+    width: 54%;
+    background:#00BCD4;
+    border: none;
+    padding: 10px 0;
+    color: #fff;
+	font-size:14px;
+	cursor:pointer;
+	margin-left:23%;
+}*/

@@ -33,32 +33,92 @@ public class RentController {
         this.forRentDao = forRentDao;
     }
 
-    @RequestMapping(value = "/rentals", method = RequestMethod.GET)
-    public String rentPage(Map model, @RequestParam(value = "page", required = false) Integer pageNumber) {
-        
-        List<Integer> pages = getPages(25);// set limit of post per page
-        model.put("pages", pages);
-
-        Integer offset;
-        if (pageNumber == null) {
-            offset = 0;
+//    @RequestMapping(value = "/rentals", method = RequestMethod.GET)
+//    public String rentPage(Map model, @RequestParam(value = "page", required = false) Integer pageNumber) {
+//        
+//        List<Integer> pages = getPages(25);// set limit of post per page
+//        model.put("pages", pages);
+//
+//        Integer offset;
+//        if (pageNumber == null) {
+//            offset = 0;
+//        } else {
+//            offset = getOffset(pageNumber);
+//        }
+//
+////        List<ForRent> rentals = forRentDao.allRentals();
+//        List<ForRent> rentals = forRentDao.listRentalsWithLimit(offset);
+//
+//        model.put("rentals", rentals);
+//
+//        boolean rent = true;
+//        model.put("rent", rent);
+//        return "rent";
+//    }
+//    @RequestMapping(value = "/rentals/{pageid}")
+//    public String edit(@PathVariable int pageid, Map model) {
+//        int total = 25;
+//        
+//        if (pageid == 1) {
+//        } else {
+//            pageid = (pageid - 1) * total + 1;
+//        }
+//        List<ForRent> rentals = forRentDao.getRentalsByPage(pageid, total);
+//
+//        int count = forRentDao.getNumOfRentals();
+//        int pages;
+//
+//        if (count % total == 0) {
+//            pages = (count / total);
+//        } else {
+//            pages = 1 + (count / total);
+//        }
+//
+//        model.put("pages", pages);
+//
+//        model.put("rentals", rentals);
+//        boolean rent = true;
+//        model.put("rent", rent);
+//        return "rent";
+//
+//    }
+    
+    @RequestMapping(value = "/rentals",  method = RequestMethod.GET)
+    public String edit(@RequestParam(value = "page", required = false) Integer pageNumber, Map model) {
+        int total = 25;
+       
+        if (pageNumber == 1) {
         } else {
-            offset = getOffset(pageNumber);
+            pageNumber = (pageNumber - 1) * total + 1;
+        }
+        List<ForRent> rentals = forRentDao.getRentalsByPage(pageNumber, total);
+
+        int count = forRentDao.getNumOfRentals();
+        int page;
+
+        if (count % total == 0) {
+            page = (count / total);
+        } else {
+            page = 1 + (count / total);
+        }
+        
+        List<Integer> pages = new ArrayList();
+        for (int i = 1; i <= page; i++) {
+            pages.add(i);
         }
 
-//        List<ForRent> rentals = forRentDao.allRentals();
-        List<ForRent> rentals = forRentDao.listRentalsWithLimit(offset);
+        model.put("pages", pages);
 
         model.put("rentals", rentals);
-
         boolean rent = true;
         model.put("rent", rent);
         return "rent";
+
     }
 
     @RequestMapping(value = "/{lat}/{lng}/{rad}", method = RequestMethod.GET)
     public String rentPageByRadius(@PathVariable String lat, @PathVariable String lng, @PathVariable String rad, Map model) {
-        
+
         String lat2 = lat;
 
         List<ForRent> rentals = forRentDao.RentalRadius(lat, lng, lat2, rad);
@@ -80,8 +140,8 @@ public class RentController {
         return "show";
 
     }
-    
-     public Integer getOffset(Integer pageNumber) {
+
+    public Integer getOffset(Integer pageNumber) {
         Integer numberOfPosts = 25;
         Integer offset = (pageNumber * numberOfPosts) - numberOfPosts;
         return offset;
@@ -91,7 +151,7 @@ public class RentController {
 
         Integer count = forRentDao.getNumOfRentals();
         Integer numberOfPages = (count / number);
-        Integer reminder=(count%number);
+        Integer reminder = (count % number);
         numberOfPages += reminder;
         List<Integer> pages = new ArrayList();
         for (int i = 1; i <= numberOfPages; i++) {

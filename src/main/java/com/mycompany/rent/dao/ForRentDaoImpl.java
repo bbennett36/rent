@@ -118,6 +118,15 @@ public class ForRentDaoImpl implements ForRentDao {
     public List<ForRent> listRentalsWithLimit(Integer offset) {
         return jdbc.query(SQL_GET_PAGINATION_WITH_LIMIT, new RentMapper(), offset);
     }
+    
+    
+//    private static final String SQL ="select * from Emp limit + (? - 1) + ?";
+    @Override
+    public List<ForRent> getRentalsByPage(int pageid,int total){  
+    String sql="select * from for_rent limit "+(pageid-1)+","+total;  
+    return jdbc.query(sql,new RentMapper());
+        
+    }
 
     private final class RentMapper implements RowMapper<ForRent> {
 

@@ -12,7 +12,7 @@ $(document).ready(function () {
 
         var lati;
         var lng;
-        var address = $('#streetAddress').val() + " " + $('#streetName').val() + " " + $('#city').val() + " " + $('#state').val() + " " + $('#zip').val();
+        var address = $('#streetAddress').val() + " " + $('#city').val() + " " + $('#state').val() + " " + $('#zip').val();
 
 
         e.preventDefault();

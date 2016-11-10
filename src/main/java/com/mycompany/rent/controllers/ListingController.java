@@ -142,7 +142,7 @@ public class ListingController {
         }
 
 //        map.addAttribute("files", fileNames);
-        return "redirect:/";
+        return "pricing";
     }
 
 }

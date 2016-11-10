@@ -34,6 +34,8 @@ public interface ForRentDao {
 
     //pagenation
     public Integer getNumOfRentals();
+
     public List<ForRent> listRentalsWithLimit(Integer offset);
 
-    }
+    public List<ForRent> getRentalsByPage(int pageid, int total);
+}

@@ -34,7 +34,7 @@
             <input id="addFile" type="button" value="Add File" />
         </form:form>
 
-        <!--        <div class="agile-its">
+<!--                <div class="agile-its">
                     <h2>File Upload</h2>
                     <div class="w3layouts">
                         <div class="photos-upload-view">
@@ -68,8 +68,8 @@
             var contextRoot = "${pageContext.request.contextPath}";
         </script>
 
-        <script src="${pageContext.request.contextPath}/js/photo.js"></script>
-<!--<script src="${pageContext.request.contextPath}/js/filedrag.js"></script>-->
+        <!--<script src="${pageContext.request.contextPath}/js/photo.js"></script>-->
+<script src="${pageContext.request.contextPath}/js/filedrag.js"></script>
 
     </body>
 </html>
