@@ -49,7 +49,7 @@ $(document).ready(function () {
                     },
                     success: function (data, status) {
                         console.log(data);
-                        window.location = contextRoot + "/rent/" + data.lat + "/" + data.lng + "/" + data.rad;
+                        window.location = contextRoot + "/rent/rentals?lat=" + data.lat + "&lng=" + data.lng + "&rad=" + data.rad;
 
                     },
                     error: function (data, status) {

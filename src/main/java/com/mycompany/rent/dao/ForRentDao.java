@@ -20,7 +20,9 @@ public interface ForRentDao {
 
     public List<ForRent> rentalsByUserId(int user_id);
 
-    public List<ForRent> RentalRadius(String lat, String lng, String lat2, String rad);
+    public List<ForRent> RentalRadius(String lat, String lng, String rad, int pageid, int total);
+    
+    public int RentalRadiusCount(String lat, String lng, String rad);
 
     public void update(ForRent forRent);
 

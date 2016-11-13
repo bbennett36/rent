@@ -33,8 +33,8 @@ public class ForRentDaoImpl implements ForRentDao {
     private static final String SQL_GET_BY_USERID = "select * from for_rent where user_id = ?";
 
     private static final String SQL_ACTIVE_POST_COUNT = "SELECT COUNT(id) From for_rent";
-    
-     private static final String SQL_GET_PAGINATION_WITH_LIMIT = "SELECT * from for_rent LIMIT ?, 3";
+
+    private static final String SQL_GET_PAGINATION_WITH_LIMIT = "SELECT * from for_rent LIMIT ?, 3";
     //lat lng lat dist
 
     @Override
@@ -93,8 +93,16 @@ public class ForRentDaoImpl implements ForRentDao {
     }
 
     @Override
-    public List<ForRent> RentalRadius(String lat, String lng, String lat2, String rad) {
-        return jdbc.query(SQL_GET_WITHIN_RADIUS, new RentMapper(), lat, lng, lat2, rad);
+    public List<ForRent> RentalRadius(String lat, String lng, String rad, int pageid, int total) {
+        String sql_radius = "SELECT *, ( 3959 * acos (cos ( radians(" + lat + ") )* cos( radians( lat ) )* cos( radians( lon ) - radians(" + lng + ") )+ sin ( radians(" + lat + ") )* sin( radians( lat ) ))) AS distance FROM for_rent HAVING distance < " + rad + " limit " + (pageid - 1) + "," + total;
+        return jdbc.query(sql_radius, new RentMapper());
+    }
+
+    @Override
+    public int RentalRadiusCount(String lat, String lng, String rad) {
+        String sql_radius2 = "SELECT *, ( 3959 * acos (cos ( radians(" + lat + ") )* cos( radians( lat ) )* cos( radians( lon ) - radians(" + lng + ") )+ sin ( radians(" + lat + ") )* sin( radians( lat ) ))) AS distance FROM for_rent HAVING distance < " + rad;
+        List<ForRent> rentals = jdbc.query(sql_radius2, new RentMapper());
+        return rentals.size();
     }
 
     @Override
@@ -113,19 +121,18 @@ public class ForRentDaoImpl implements ForRentDao {
         int numOfPosts = count.get(0);
         return numOfPosts;
     }
-    
+
     @Override
     public List<ForRent> listRentalsWithLimit(Integer offset) {
         return jdbc.query(SQL_GET_PAGINATION_WITH_LIMIT, new RentMapper(), offset);
     }
-    
-    
+
 //    private static final String SQL ="select * from Emp limit + (? - 1) + ?";
     @Override
-    public List<ForRent> getRentalsByPage(int pageid,int total){  
-    String sql="select * from for_rent limit "+(pageid-1)+","+total;  
-    return jdbc.query(sql,new RentMapper());
-        
+    public List<ForRent> getRentalsByPage(int pageid, int total) {
+        String sql = "select * from for_rent limit " + (pageid - 1) + "," + total;
+        return jdbc.query(sql, new RentMapper());
+
     }
 
     private final class RentMapper implements RowMapper<ForRent> {
@@ -173,8 +180,8 @@ public class ForRentDaoImpl implements ForRentDao {
         }
 
     }
-    
-     private static final class CountMapper implements RowMapper<Integer> {
+
+    private static final class CountMapper implements RowMapper<Integer> {
 
         @Override
         public Integer mapRow(ResultSet rs, int i) throws SQLException {

@@ -82,18 +82,35 @@ public class RentController {
 //        return "rent";
 //
 //    }
-    
-    @RequestMapping(value = "/rentals",  method = RequestMethod.GET)
-    public String edit(@RequestParam(value = "page", required = false) Integer pageNumber, Map model) {
+    @RequestMapping(value = "/rentals", method = RequestMethod.GET)
+    public String edit(@RequestParam(value = "page", required = false) Integer pageNumber, @RequestParam(value = "lat", required = false) String lat, @RequestParam(value = "lng", required = false) String lng, @RequestParam(value = "rad", required = false) String rad, Map model) {
         int total = 25;
-       
-        if (pageNumber == 1) {
+
+        if (pageNumber == null) {
+            pageNumber = 1;
         } else {
             pageNumber = (pageNumber - 1) * total + 1;
         }
-        List<ForRent> rentals = forRentDao.getRentalsByPage(pageNumber, total);
 
-        int count = forRentDao.getNumOfRentals();
+        List<ForRent> rentals = new ArrayList();
+
+        int count;
+        if (lat == null && lng == null && rad == null) {
+            rentals = forRentDao.getRentalsByPage(pageNumber, total);
+            count = forRentDao.getNumOfRentals();
+        } else {
+            count = forRentDao.RentalRadiusCount(lat, lng, rad);
+            rentals = forRentDao.RentalRadius(lat, lng, rad, pageNumber, total);
+            
+            String latParam = "&lat=" + lat;
+            String lngParam = "&lng=" + lng;
+            String radParam = "&rad=" + rad;
+
+            model.put("latParam", latParam);
+            model.put("lngParam", lngParam);
+            model.put("radParam", radParam);
+        }
+
         int page;
 
         if (count % total == 0) {
@@ -101,7 +118,7 @@ public class RentController {
         } else {
             page = 1 + (count / total);
         }
-        
+
         List<Integer> pages = new ArrayList();
         for (int i = 1; i <= page; i++) {
             pages.add(i);
@@ -112,17 +129,43 @@ public class RentController {
         model.put("rentals", rentals);
         boolean rent = true;
         model.put("rent", rent);
+
         return "rent";
 
     }
 
     @RequestMapping(value = "/{lat}/{lng}/{rad}", method = RequestMethod.GET)
-    public String rentPageByRadius(@PathVariable String lat, @PathVariable String lng, @PathVariable String rad, Map model) {
+    public String rentPageByRadius(@RequestParam(value = "page", required = false) Integer pageNumber, @PathVariable String lat, @PathVariable String lng, @PathVariable String rad, Map model) {
+
+        int total = 25;
+
+        if (pageNumber == null) {
+            pageNumber = 1;
+        } else {
+            pageNumber = (pageNumber - 1) * total + 1;
+        }
+
+        List<ForRent> rentals = forRentDao.RentalRadius(lat, lng, rad, pageNumber, total);
+
+        int count = forRentDao.getNumOfRentals();
+        int page;
+
+        if (count % total == 0) {
+            page = (count / total);
+        } else {
+            page = 1 + (count / total);
+        }
+
+        List<Integer> pages = new ArrayList();
+        for (int i = 1; i <= page; i++) {
+            pages.add(i);
+        }
+
+        model.put("pages", pages);
 
         String lat2 = lat;
 
-        List<ForRent> rentals = forRentDao.RentalRadius(lat, lng, lat2, rad);
-
+//        List<ForRent> rentals = forRentDao.RentalRadius(lat, lng, lat2, rad);
         model.put("rentals", rentals);
 
 //        boolean rent = true;
