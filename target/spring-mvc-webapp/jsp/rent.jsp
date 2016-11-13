@@ -71,7 +71,7 @@
             <!-- Pagination -->
             <div class="row text-center">
                 <div class="col-lg-12">
-                    <ul class="pagination">
+                    <ul class="pagination pagination-lg">
                        <c:forEach items="${pages}" var="page">
                             <li><a href="${pageContext.request.contextPath}/rent/rentals?page=${page}${latParam}${lngParam}${radParam}">${page}</a></li>
                         </c:forEach>

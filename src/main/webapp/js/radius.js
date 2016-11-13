@@ -14,6 +14,9 @@ $(document).ready(function () {
         var lng;
         var address = $('#address').val();
         var rad = $('#radius').val();
+        var select = document.getElementById('sel');
+        var choice = select.value;
+
 
 
         e.preventDefault();
@@ -30,6 +33,10 @@ $(document).ready(function () {
                 lati = response.results[0].locations[0].latLng.lat;
                 lng = response.results[0].locations[0].latLng.lng;
 
+                if (rad == null) {
+                    rad = '10';
+                }
+
                 console.log(lati, lng, rad);
 
                 var data = JSON.stringify({
@@ -38,25 +45,28 @@ $(document).ready(function () {
                     rad: rad
                 });
 
-                $.ajax({
-                    url: contextRoot + "/map/radius",
-                    type: "POST",
-                    data: data,
-                    dataType: 'json',
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader("Accept", "application/json");
-                        xhr.setRequestHeader("Content-type", "application/json");
-                    },
-                    success: function (data, status) {
-                        console.log(data);
-                        window.location = contextRoot + "/rent/rentals?lat=" + data.lat + "&lng=" + data.lng + "&rad=" + data.rad;
+                if (choice == 1) {
 
-                    },
-                    error: function (data, status) {
-                        alert("bad api call");
-                        console.log(status);
-                    }
-                });
+                    $.ajax({
+                        url: contextRoot + "/map/radius",
+                        type: "POST",
+                        data: data,
+                        dataType: 'json',
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Accept", "application/json");
+                            xhr.setRequestHeader("Content-type", "application/json");
+                        },
+                        success: function (data, status) {
+                            console.log(data);
+                            window.location = contextRoot + "/rent/rentals?lat=" + data.lat + "&lng=" + data.lng + "&rad=" + data.rad;
+
+                        },
+                        error: function (data, status) {
+                            alert("bad api call");
+                            console.log(status);
+                        }
+                    });
+                }
             },
             error: function (data, status) {
 //                    alert("geo error");
