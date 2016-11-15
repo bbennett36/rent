@@ -83,7 +83,7 @@ public class RentController {
 //
 //    }
     @RequestMapping(value = "/rentals", method = RequestMethod.GET)
-    public String edit(@RequestParam(value = "page", required = false) Integer pageNumber, @RequestParam(value = "lat", required = false) String lat, @RequestParam(value = "lng", required = false) String lng, @RequestParam(value = "rad", required = false) String rad, Map model) {
+    public String rentResults(@RequestParam(value = "page", required = false) Integer pageNumber, @RequestParam(value = "lat", required = false) String lat, @RequestParam(value = "lng", required = false) String lng, @RequestParam(value = "rad", required = false) String rad, Map model) {
         int total = 25;
 
         if (pageNumber == null) {

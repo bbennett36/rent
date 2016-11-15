@@ -466,7 +466,7 @@ form {
     padding: 1em;
     position: relative;
 }
-input[type="text"],
+/*input[type="text"],
 input[type="tel"],
 input[type="email"],
 input[type="date"],
@@ -476,7 +476,7 @@ textarea {
     width: 100%;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
     color: #333;
-}
+}*/
 p{
     display: block;
     font-size: 14px;
@@ -494,7 +494,7 @@ fieldset legend {
     color: #212121;
     padding: .2em.5em;
 }
-input[type="text"],
+/*input[type="text"],
 input[type="tel"],
 input[type="email"],
 input[type="date"],
@@ -503,9 +503,9 @@ select,textarea {
     display: block;
     font-size: 1em;
     padding: 0.5em;
-    /*background: rgba(255, 255, 255, 0.78);*/
-    /*border: none;*/
-}
+    background: rgba(255, 255, 255, 0.78);
+    border: none;
+}*/
 input[type="radio"] {
     float: left;
 }

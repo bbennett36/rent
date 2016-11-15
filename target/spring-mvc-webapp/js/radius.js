@@ -6,6 +6,16 @@
 
 
 $(document).ready(function () {
+    
+     function initMap() {
+
+                var input = /** @type {!HTMLInputElement} */(
+                        document.getElementById('address'));
+
+
+                var autocomplete = new google.maps.places.Autocomplete(input);
+
+                    };
 
 
     $('#searchRadius').on('click', function (e) {

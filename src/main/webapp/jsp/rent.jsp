@@ -37,6 +37,7 @@
                                 <option>35</option>
                                 <option>50</option>
                             </select>
+                            <input type="hidden" id="sel" value="1" />
                             <button id='searchRadius' type="submit">Search</button>
                         </form>
                     </div>
@@ -72,9 +73,9 @@
             <div class="row text-center">
                 <div class="col-lg-12">
                     <ul class="pagination pagination-lg">
-                       <c:forEach items="${pages}" var="page">
+                        <c:forEach items="${pages}" var="page">
                             <li><a href="${pageContext.request.contextPath}/rent/rentals?page=${page}${latParam}${lngParam}${radParam}">${page}</a></li>
-                        </c:forEach>
+                            </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -97,6 +98,22 @@
     </div>
 
 
+    <script>
+        function initMap() {
+
+            var input = /** @type {!HTMLInputElement} */(
+                    document.getElementById('address'));
+
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+        }
+        ;
+
+    </script>
+    
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEqFPxjP_ubeG9tLbj3P0aHUoqNi35rts&libraries=places&callback=initMap"
+        async defer></script>
 
 
 
