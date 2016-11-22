@@ -6,6 +6,7 @@
 package com.mycompany.rent.dao;
 
 import com.mycompany.rent.dto.ForRent;
+import com.mycompany.rent.dto.Search;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -128,6 +129,39 @@ public class ForRentDaoImpl implements ForRentDao {
     }
 
 //    private static final String SQL ="select * from Emp limit + (? - 1) + ?";
+    @Override
+    public List<ForRent> getRentalsByPage(int pageid, int total, Search search) {
+//        String where = "";
+//        if (search.getMaxBath() != null) {
+////            where += " WHERE bath < " + search.getMaxBath();
+//            where += (where == "") ? " WHERE " : " AND "
+//                    + "search.getMaxBath() = " + search.getMaxBath();
+//        }
+//        String sql = "select * from for_rent " + where + " limit " + (pageid - 1) + "," + total;
+
+        String sql = "SELECT * from for_rent";
+
+        if (search.getMinPrice() != null) {
+            if (!sql.toUpperCase().contains("WHERE")) {
+                sql += " WHERE";
+
+            }
+            sql += " rent between " + search.getMinPrice() + " and " + search.getMaxPrice();
+        }
+//        if (bedrooms_defined ?) {
+//            if (!basic_query.include ? ("WHERE")) {
+//                basic_query += "WHERE"
+//            } else {
+//                basic_query += "AND "
+//            }
+//            basic_query += "bedrooms >" + bedrooms_count;
+//        }
+//        (...)
+        sql += " limit " + (pageid - 1) + "," + total;
+        return jdbc.query(sql, new RentMapper());
+
+    }
+
     @Override
     public List<ForRent> getRentalsByPage(int pageid, int total) {
         String sql = "select * from for_rent limit " + (pageid - 1) + "," + total;

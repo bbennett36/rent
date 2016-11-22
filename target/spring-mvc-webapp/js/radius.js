@@ -6,16 +6,17 @@
 
 
 $(document).ready(function () {
-    
-     function initMap() {
 
-                var input = /** @type {!HTMLInputElement} */(
-                        document.getElementById('address'));
+    function initMap() {
+
+        var input = /** @type {!HTMLInputElement} */(
+                document.getElementById('address'));
 
 
-                var autocomplete = new google.maps.places.Autocomplete(input);
+        var autocomplete = new google.maps.places.Autocomplete(input);
 
-                    };
+    }
+    ;
 
 
     $('#searchRadius').on('click', function (e) {
@@ -24,6 +25,8 @@ $(document).ready(function () {
         var lng;
         var address = $('#address').val();
         var rad = $('#radius').val();
+        var minBath = $('#minBath').val();
+        var maxBath = $('#maxBath').val();
         var select = document.getElementById('sel');
         var choice = select.value;
 
@@ -55,6 +58,7 @@ $(document).ready(function () {
                     rad: rad
                 });
 
+
                 if (choice == 1) {
 
                     $.ajax({
@@ -68,7 +72,7 @@ $(document).ready(function () {
                         },
                         success: function (data, status) {
                             console.log(data);
-                            window.location = contextRoot + "/rent/rentals?lat=" + data.lat + "&lng=" + data.lng + "&rad=" + data.rad;
+                            window.location = contextRoot + "/rent/rentals?lat=" + data.lat + "&lng=" + data.lng + "&rad=" + data.rad + "&minBath=" + minBath + "&maxBath=" + maxBath;
 
                         },
                         error: function (data, status) {

@@ -30,8 +30,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <form method="GET">
+                        <form method="GET" action="${pageContext.request.contextPath}/rent/rentals">
                             <input id="address" type="text">
+                            <input id="minBath" name="minPrice" type="text" placeholder="Min. Price" />
+                            <input id="maxBath" name="maxPrice" type="text" placeholder="Max. Price" />
                             <select id="radius">
                                 <option>25</option>
                                 <option>35</option>
@@ -74,8 +76,10 @@
                 <div class="col-lg-12">
                     <ul class="pagination pagination-lg">
                         <c:forEach items="${pages}" var="page">
-                            <li><a href="${pageContext.request.contextPath}/rent/rentals?page=${page}${latParam}${lngParam}${radParam}">${page}</a></li>
-                            </c:forEach>
+                            <li><a href="${pageContext.request.contextPath}/rent/rentals?page=${page}">${page}</a></li>
+                            <!--<li><a href="&page=${page}">${page}</a></li>-->
+
+                        </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -111,9 +115,9 @@
         ;
 
     </script>
-    
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEqFPxjP_ubeG9tLbj3P0aHUoqNi35rts&libraries=places&callback=initMap"
-        async defer></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEqFPxjP_ubeG9tLbj3P0aHUoqNi35rts&libraries=places&callback=initMap"
+    async defer></script>
 
 
 

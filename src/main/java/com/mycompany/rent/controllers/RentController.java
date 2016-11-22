@@ -7,12 +7,14 @@ package com.mycompany.rent.controllers;
 
 import com.mycompany.rent.dao.ForRentDao;
 import com.mycompany.rent.dto.ForRent;
+import com.mycompany.rent.dto.Search;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -82,8 +84,62 @@ public class RentController {
 //        return "rent";
 //
 //    }
+//    @RequestMapping(value = "/rentals", method = RequestMethod.GET)
+//    public String rentResults(@RequestParam(value = "page", required = false) Integer pageNumber, @RequestParam(value = "lat", required = false) String lat, @RequestParam(value = "lng", required = false) String lng, @RequestParam(value = "rad", required = false) String rad, @RequestParam(value = "minBath", required = false) String minBath, @RequestParam(value = "maxBath", required = false) String maxBath, Map model) {
+//        int total = 25;
+//
+//        if (pageNumber == null) {
+//            pageNumber = 1;
+//        } else {
+//            pageNumber = (pageNumber - 1) * total + 1;
+//        }
+//
+//        List<ForRent> rentals = new ArrayList();
+//
+//        int count;
+//        if (lat == null && lng == null && rad == null) {
+//            rentals = forRentDao.getRentalsByPage(pageNumber, total);
+//            count = forRentDao.getNumOfRentals();
+//        } else {
+//            count = forRentDao.RentalRadiusCount(lat, lng, rad);
+//            rentals = forRentDao.RentalRadius(lat, lng, rad, pageNumber, total);
+//            
+//            String latParam = "&lat=" + lat;
+//            String lngParam = "&lng=" + lng;
+//            String radParam = "&rad=" + rad;
+//
+//            model.put("latParam", latParam);
+//            model.put("lngParam", lngParam);
+//            model.put("radParam", radParam);
+//        }
+//
+//        int page;
+//
+//        if (count % total == 0) {
+//            page = (count / total);
+//        } else {
+//            page = 1 + (count / total);
+//        }
+//
+//        List<Integer> pages = new ArrayList();
+//        for (int i = 1; i <= page; i++) {
+//            pages.add(i);
+//        }
+//
+//        model.put("pages", pages);
+//
+//        model.put("rentals", rentals);
+//        boolean rent = true;
+//        model.put("rent", rent);
+//
+//        return "rent";
+//
+//    }
+    
+    
+    //Testing filter
     @RequestMapping(value = "/rentals", method = RequestMethod.GET)
-    public String rentResults(@RequestParam(value = "page", required = false) Integer pageNumber, @RequestParam(value = "lat", required = false) String lat, @RequestParam(value = "lng", required = false) String lng, @RequestParam(value = "rad", required = false) String rad, Map model) {
+    public String rentResults(@ModelAttribute("search") Search search, @RequestParam(value = "page", required = false) Integer pageNumber, Map model) {
         int total = 25;
 
         if (pageNumber == null) {
@@ -95,21 +151,25 @@ public class RentController {
         List<ForRent> rentals = new ArrayList();
 
         int count;
-        if (lat == null && lng == null && rad == null) {
+        if (search == null) {
             rentals = forRentDao.getRentalsByPage(pageNumber, total);
             count = forRentDao.getNumOfRentals();
-        } else {
-            count = forRentDao.RentalRadiusCount(lat, lng, rad);
-            rentals = forRentDao.RentalRadius(lat, lng, rad, pageNumber, total);
-            
-            String latParam = "&lat=" + lat;
-            String lngParam = "&lng=" + lng;
-            String radParam = "&rad=" + rad;
-
-            model.put("latParam", latParam);
-            model.put("lngParam", lngParam);
-            model.put("radParam", radParam);
+        } else  {
+            rentals = forRentDao.getRentalsByPage(pageNumber, total, search);
+            count = forRentDao.getNumOfRentals();
         }
+//        } else {
+//            count = forRentDao.RentalRadiusCount(lat, lng, rad);
+//            rentals = forRentDao.RentalRadius(lat, lng, rad, pageNumber, total);
+//            
+//            String latParam = "&lat=" + lat;
+//            String lngParam = "&lng=" + lng;
+//            String radParam = "&rad=" + rad;
+//
+//            model.put("latParam", latParam);
+//            model.put("lngParam", lngParam);
+//            model.put("radParam", radParam);
+//        }
 
         int page;
 

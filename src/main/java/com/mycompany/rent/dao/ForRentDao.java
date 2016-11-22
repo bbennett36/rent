@@ -6,6 +6,7 @@
 package com.mycompany.rent.dao;
 
 import com.mycompany.rent.dto.ForRent;
+import com.mycompany.rent.dto.Search;
 import java.util.List;
 
 /**
@@ -39,5 +40,7 @@ public interface ForRentDao {
 
     public List<ForRent> listRentalsWithLimit(Integer offset);
 
+    public List<ForRent> getRentalsByPage(int pageid, int total, Search search);
     public List<ForRent> getRentalsByPage(int pageid, int total);
+
 }

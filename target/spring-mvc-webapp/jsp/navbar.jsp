@@ -18,7 +18,7 @@
 
         <link href="${pageContext.request.contextPath}/css/site.css" rel="stylesheet" >
         <!--<script src="${pageContext.request.contextPath}/js/map.js"></script>-->
-        <script src="${pageContext.request.contextPath}/js/radius.js"></script>
+        <!--<script src="${pageContext.request.contextPath}/js/radius.js"></script>-->
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <!--        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEqFPxjP_ubeG9tLbj3P0aHUoqNi35rts&libraries=places&callback=initMap"
         async defer></script>-->
